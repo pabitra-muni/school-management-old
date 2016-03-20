@@ -1,0 +1,15 @@
+group 'org.ahant:school-management-library'
+version '1.0-SNAPSHOT'
+
+allprojects{
+	apply plugin: 'java'
+	repositories {
+		mavenCentral()
+	}
+	sourceCompatibility = 1.8
+}
+
+dependencies {
+    compile project(':school-management-core')
+	compile project(':school-management-auth')
+}

@@ -1,0 +1,16 @@
+group 'org.ahant:school-management-core'
+version '1.0-SNAPSHOT'
+
+dependencies {
+    compile 'com.google.guava:guava:19.0'
+    compile 'org.springframework:spring-jdbc:4.2.5.RELEASE'
+    compile 'org.springframework:spring-context:4.2.5.RELEASE'
+    compile 'org.slf4j:slf4j-api:1.7.18'
+    compile 'org.slf4j:slf4j-simple:1.7.18'
+    compile 'mysql:mysql-connector-java:5.1.6'
+    runtime 'commons-dbcp:commons-dbcp:1.4'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.testng:testng:6.9.10'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
+}

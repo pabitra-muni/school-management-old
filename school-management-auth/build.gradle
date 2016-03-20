@@ -1,0 +1,10 @@
+group 'org.ahant:school-management-auth'
+version '1.0-SNAPSHOT'
+
+dependencies {
+	compile project(':school-management-core')
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.testng:testng:6.9.10'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
+}
