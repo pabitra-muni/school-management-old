@@ -1,15 +1,44 @@
 group 'org.ahant:school-management-library'
 version '1.0-SNAPSHOT'
 
-allprojects{
-	apply plugin: 'java'
-	repositories {
-		mavenCentral()
-	}
-	sourceCompatibility = 1.8
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'jacoco'
+    repositories {
+        mavenCentral()
+    }
+    sourceCompatibility = 1.8
+
+    jacocoTestReport.dependsOn test
+}
+subprojects{
+    test {
+        useTestNG(){
+            parallel = "tests"
+            useDefaultListeners = true
+            //listeners << 'org.testng.reporters.EmailableReporter'
+        }
+        testLogging.showStandardStreams = true
+        ignoreFailures = false
+        reports.junitXml.enabled = false
+        reports.html.enabled = false
+    }
+}
+
+test {
+    testLogging.showStandardStreams = true
+    ignoreFailures = false
+    reports.junitXml.enabled = false
 }
 
 dependencies {
     compile project(':school-management-core')
-	compile project(':school-management-auth')
+    compile project(':school-management-auth')
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.testng:testng:6.9.10'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
 }
