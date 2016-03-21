@@ -14,12 +14,14 @@ allprojects {
 
     jacocoTestReport.dependsOn test
 }
-subprojects{
+
+subprojects {
     test {
-        useTestNG(){
+        useTestNG() {
             parallel = "tests"
-            useDefaultListeners = true
-            //listeners << 'org.testng.reporters.EmailableReporter'
+            useDefaultListeners = false
+            listeners = ['org.uncommons.reportng.HTMLReporter']
+            suiteXmlFiles = fileTree(dir: "${rootDir}/${project.name}/src/test/resources", include: "testng.xml") as List
         }
         testLogging.showStandardStreams = true
         ignoreFailures = false
@@ -38,7 +40,6 @@ dependencies {
     compile project(':school-management-core')
     compile project(':school-management-auth')
     testCompile 'junit:junit:4.12'
-    testCompile 'org.testng:testng:6.9.10'
     testCompile 'org.mockito:mockito-all:1.10.19'
     testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
 }

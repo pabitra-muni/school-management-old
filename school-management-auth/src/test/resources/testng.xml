@@ -1,11 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="SchoolManagement Auth Test Suite" verbose="1" >
-    <test name="Auth">
-        <groups>
-            <run>
-                <include name="UnitTest"/>
-            </run>
-        </groups>
+<suite name="SchoolManagement Test Suite: Auth">
+    <test name="Auth: Controller">
+        <packages>
+            <package name="org.ahant.controller.*" />
+        </packages>
+    </test>
+    <test name="Auth: DAO">
+        <packages>
+            <package name="org.ahant.dao.*"/>
+        </packages>
     </test>
 </suite>

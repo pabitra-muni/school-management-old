@@ -17,7 +17,6 @@ import static org.mockito.Mockito.when;
 /**
  * Created by ahant on 3/20/2016.
  */
-@Test(groups = {"UnitTest"})
 public class LoginDaoImplTest {
 
     private static final String encryptedPassword = "YWhhbnQxMjM=";

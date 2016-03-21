@@ -19,7 +19,6 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by ahant on 3/19/2016.
  */
-@Test(groups = {"UnitTest"})
 public class LoginValidatorImplTest {
 
     private LoginValidatorImpl loginValidator;
