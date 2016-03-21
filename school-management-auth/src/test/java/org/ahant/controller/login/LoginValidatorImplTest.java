@@ -1,8 +1,8 @@
 package org.ahant.controller.login;
 
+import org.ahant.dao.login.LoginDao;
 import org.ahant.exception.ApplicationException;
 import org.ahant.exception.InvalidCredentialException;
-import org.ahant.dao.login.LoginDao;
 import org.ahant.model.login.User;
 import org.ahant.util.cipher.Encryptor;
 import org.testng.annotations.BeforeMethod;

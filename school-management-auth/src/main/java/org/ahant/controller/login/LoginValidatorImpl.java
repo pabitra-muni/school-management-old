@@ -1,16 +1,16 @@
 package org.ahant.controller.login;
 
+import com.google.common.base.Strings;
+import org.ahant.dao.login.LoginDao;
 import org.ahant.exception.ApplicationException;
 import org.ahant.exception.InvalidCredentialException;
-import org.ahant.dao.login.LoginDao;
 import org.ahant.model.login.User;
 import org.ahant.util.cipher.Encryptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Strings;
-
-import static org.ahant.constants.login.LoginConstants.*;
+import static org.ahant.constants.login.LoginConstants.INVALID_CREDENTIAL;
+import static org.ahant.constants.login.LoginConstants.NO_USER;
 
 /**
  * Created by ahant on 3/19/2016.
