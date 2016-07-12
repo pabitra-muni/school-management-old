@@ -1,4 +1,4 @@
-package org.ahant.dao.login;
+package org.ahant.dao;
 
 import org.ahant.util.cipher.Encryptor;
 import org.junit.Test;

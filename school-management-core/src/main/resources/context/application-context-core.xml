@@ -8,7 +8,7 @@
 
     <context:component-scan base-package="org.ahant.config"/>
 
-    <bean id="dbPassword" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+    <bean id="dbPasswordFactory" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="staticMethod" value="org.ahant.util.cipher.Encryptor.decode"/>
         <property name="arguments" value="${db.password}"/>
     </bean>
@@ -18,7 +18,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://${db.host}:${db.port}/${db.schema}"/>
         <property name="username" value="${db.user}"/>
-        <property name="password" ref="dbPassword"/>
+        <property name="password" ref="dbPasswordFactory"/>
     </bean>
 
 

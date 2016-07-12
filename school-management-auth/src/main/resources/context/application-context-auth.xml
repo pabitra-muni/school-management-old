@@ -5,10 +5,12 @@
 
     <import resource="application-context-core.xml"/>
     
-    <bean id="loginValidator" class="org.ahant.controller.login.LoginValidatorImpl">
+    <bean id="loginValidator" class="org.ahant.controller.LoginValidatorImpl">
         <property name="loginDao" ref="loginDao"/>
     </bean>
 
-    <bean id="loginDao" class="org.ahant.dao.login.LoginDaoImpl"/>
+    <bean id="loginDao" class="org.ahant.dao.LoginDaoImpl">
+        <property name="userPasswordQuery" value="${query.user.get.password}"/>
+    </bean>
 
 </beans>
