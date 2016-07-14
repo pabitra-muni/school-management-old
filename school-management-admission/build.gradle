@@ -2,7 +2,7 @@ group 'org.ahant:school-management-admission'
 version '1.0-SNAPSHOT'
 
 dependencies {
-    compile project(':school-management-core')
+	compile project(':school-management-core')
     testCompile 'junit:junit:4.12'
     testCompile 'org.testng:testng:6.9.10'
     testCompile 'org.uncommons:reportng:1.1.4'
