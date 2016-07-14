@@ -17,12 +17,13 @@ import static org.junit.Assert.assertEquals;
 public class LoginDaoImplIntegrationTest {
 
     private static final String encryptedPassword = "YWhhbnQxMjM=";
+    private static final String userName = "ahant";
 
     @Autowired
     private LoginDaoImpl loginDao;
 
     @Test
     public void testGetPassword() {
-        assertEquals(Encryptor.decode(encryptedPassword), Encryptor.decode(loginDao.getPassword("ahant")));
+        assertEquals(Encryptor.decode(encryptedPassword), Encryptor.decode(loginDao.getPassword(userName)));
     }
 }

@@ -59,11 +59,9 @@ public class LoginValidatorImplTest {
 
     @Test(expectedExceptions = {InvalidCredentialException.class}, expectedExceptionsMessageRegExp = INVALID_CREDENTIAL)
     public void testValidateUser_IncorrectPassword() throws UnsupportedEncodingException {
-
         mockLoginDao = mock(LoginDao.class);
         when(mockLoginDao.getPassword(testUsername)).thenReturn(Encryptor.encode("wrongPassword"));
         loginValidator.setLoginDao(mockLoginDao);
-
         loginValidator.validateUser(new User(testUsername, testPassword));
     }
 

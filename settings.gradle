@@ -1,4 +1,6 @@
 rootProject.name = 'school-management-library'
 
-include 'school-management-core', 'school-management-auth'
+include 'school-management-core',
+        'school-management-auth',
+        'school-management-admission'
 
