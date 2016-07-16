@@ -3,12 +3,12 @@
 <suite name="SchoolManagement Test Suite: Auth">
     <test name="Auth: Controller">
         <packages>
-            <package name="org.ahant.auth.controller.*" />
+            <package name="org.ahant.admission.controller.*" />
         </packages>
     </test>
     <test name="Auth: DAO">
         <packages>
-            <package name="org.ahant.auth.dao.*"/>
+            <package name="org.ahant.admission.dao.*"/>
         </packages>
     </test>
 </suite>
