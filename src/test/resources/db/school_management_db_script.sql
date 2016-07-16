@@ -1,3 +1,6 @@
+--SET GLOBAL innodb_buffer_pool_size=1*1024*1024*1024; -- 1GB (for sonarQube)
+--SET GLOBAL query_cache_size = 15*1024*1024; -- 15MB (for sonarQube)
+
 CREATE DATABASE `school_management`;
 
 USE school_management;

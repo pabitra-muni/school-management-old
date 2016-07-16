@@ -26,7 +26,7 @@ public class LoginValidatorImpl implements LoginValidator {
         validateUserDetails(user);
         if (null == loginDao) {
             logger.error("loginDao is null.");
-            throw new ApplicationException();
+            throw new ApplicationException("loginDao is null.");
         }
         if (!user.getPassword().equals(Encryptor.decode(loginDao.getPassword(user.getUserName())))) {
             logger.info("Incorrect user details, throwing InvalidCredentialException with INVALID_CREDENTIAL message.");

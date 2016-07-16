@@ -9,7 +9,7 @@ import java.util.Base64;
 public class Encryptor {
 
     public static void main(String[] args) throws Exception {
-        System.out.println(encode("admin"));
+        System.out.println(decode("YWRtaW4="));
     }
 
     public static String encode(String value) throws UnsupportedEncodingException {
