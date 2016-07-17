@@ -20,7 +20,7 @@ public class LoginDaoImpl implements LoginDao {
 
     public String getPassword(String username) {
         String[] args = {username};
-        return (String) jdbcTemplate.queryForObject(userPasswordQuery, args, String.class);
+        return (String) jdbcTemplate.queryForObject(getUserPasswordQuery(), args, String.class);
     }
 
     public String getUserPasswordQuery() {
