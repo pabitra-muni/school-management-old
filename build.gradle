@@ -30,12 +30,11 @@ subprojects {
     }
 }
 
-// TODO : temporarily commented IT tests. Need to find out a better way to exclude them in CI build.
-/*test {
+test {
     testLogging.showStandardStreams = true
     ignoreFailures = false
     reports.junitXml.enabled = false
-}*/
+}
 
 dependencies {
     compile project(':school-management-core')
