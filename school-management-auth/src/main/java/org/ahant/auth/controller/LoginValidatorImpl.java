@@ -4,7 +4,6 @@ import com.google.common.base.Strings;
 import org.ahant.auth.dao.LoginDao;
 import org.ahant.auth.exception.InvalidCredentialException;
 import org.ahant.auth.model.User;
-import org.ahant.core.exception.ApplicationException;
 import org.ahant.core.util.cipher.Encryptor;
 
 import static com.google.common.base.Preconditions.checkArgument;

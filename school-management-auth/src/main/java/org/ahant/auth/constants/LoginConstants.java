@@ -5,6 +5,8 @@ package org.ahant.auth.constants;
  */
 public class LoginConstants {
 
+	private LoginConstants(){}
+
 	public static final String NO_USER = "The User object can not be null";
 	public static final String INVALID_CREDENTIAL = "The username or password provided is invalid.";
 }

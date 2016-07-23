@@ -9,7 +9,7 @@ public class CommonUtil {
         throw new IllegalAccessError("Utility class");
     }
 
-    public static String resizeTo(String str, int resizeLength, Character resizeChar) {
+    public static String resizeTo(String str, int resizeLength, String resizeChar) {
         String temp = str;
         if (temp.length() > resizeLength) {
             temp = temp.substring(0, resizeLength);
@@ -19,7 +19,7 @@ public class CommonUtil {
         return temp;
     }
 
-    public static String getCharacters(int count, Character val) {
+    public static String getCharacters(int count, String val) {
         StringBuilder temp = new StringBuilder();
         int counter = 1;
         while (counter <= count) {
