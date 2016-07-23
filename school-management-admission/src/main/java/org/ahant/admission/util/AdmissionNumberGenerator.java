@@ -2,7 +2,6 @@ package org.ahant.admission.util;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import org.ahant.core.exception.ApplicationException;
 import org.ahant.core.model.School;
 import org.ahant.core.util.NumberGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class AdmissionNumberGenerator implements NumberGenerator {
     private School school;
     @Autowired
     Environment env;
-    private static AtomicLong current;
+    private AtomicLong current;
 
     @Override
     public String generateNumber() {

@@ -7,6 +7,7 @@ import java.util.Base64;
  * Created by ahant on 3/20/2016.
  */
 public class Encryptor {
+    private Encryptor(){}
 
     public static void main(String[] args) throws Exception {
         System.out.println(decode("YWRtaW4="));
