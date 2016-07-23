@@ -8,6 +8,6 @@ import org.ahant.auth.exception.InvalidCredentialException;
  */
 public interface LoginValidator {
 
-	boolean validateUser(User user) throws IllegalArgumentException, InvalidCredentialException;
+	boolean validateUser(User user);
 
 }

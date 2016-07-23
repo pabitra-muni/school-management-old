@@ -1,6 +1,7 @@
 package org.ahant.auth.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -18,9 +19,10 @@ public class LoginDaoImpl implements LoginDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    @Override
     public String getPassword(String username) {
         String[] args = {username};
-        return (String) jdbcTemplate.queryForObject(getUserPasswordQuery(), args, String.class);
+        return jdbcTemplate.queryForObject(getUserPasswordQuery(), args, String.class);
     }
 
     public String getUserPasswordQuery() {

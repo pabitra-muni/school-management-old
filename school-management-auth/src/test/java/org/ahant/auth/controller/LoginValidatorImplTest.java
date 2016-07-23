@@ -32,7 +32,7 @@ public class LoginValidatorImplTest {
     }
 
     @Test(expectedExceptions = {
-            IllegalArgumentException.class}, expectedExceptionsMessageRegExp = NO_USER)
+            IllegalArgumentException.class})
     public void testValidateUser_UserNull() {
         loginValidator.validateUser(null);
     }
@@ -65,12 +65,6 @@ public class LoginValidatorImplTest {
         loginValidator.setLoginDao(mockLoginDao);
 
         loginValidator.validateUser(new User(testUsername, testPassword));
-    }
-
-    @Test(expectedExceptions = {ApplicationException.class})
-    public void testValidateUser_LoginDaoNull() {
-        loginValidator.setLoginDao(null);
-        assertTrue(loginValidator.validateUser(new User(testUsername, testPassword)));
     }
 
     @Test

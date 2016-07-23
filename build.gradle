@@ -4,16 +4,17 @@ version '1.0-SNAPSHOT'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-allprojects {
-    apply plugin: 'java'
-    apply plugin: 'jacoco'
+allprojects{
     repositories {
         mavenCentral()
     }
-    sourceCompatibility = 1.8
-
-    jacocoTestReport.dependsOn test
+    apply plugin: 'java'
+    apply plugin: 'jacoco'
 }
+
+sourceCompatibility = 1.8
+
+jacocoTestReport.dependsOn test
 
 subprojects {
     test {
@@ -36,13 +37,26 @@ test {
     reports.junitXml.enabled = false
 
     // Integration tests are disabled, by default, as they fail in CI build.
-    onlyIf {project.hasProperty("runIT")}
+    onlyIf { project.hasProperty("runIT") }
 }
 
 dependencies {
     compile project(':school-management-core')
     compile project(':school-management-auth')
+    compile project(':school-management-admission')
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-all:1.10.19'
     testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
 }
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.0.1"
+    }
+}
+apply plugin: "org.sonarqube"
