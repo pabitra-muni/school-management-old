@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SchoolManagement Test Suite: Core">
+    <test name="Core: Util">
+        <packages>
+            <package name="org.ahant.core.util.*" />
+        </packages>
+    </test>
+</suite>
