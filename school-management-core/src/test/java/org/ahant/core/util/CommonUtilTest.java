@@ -13,32 +13,33 @@ import static org.testng.Assert.assertTrue;
 public class CommonUtilTest {
 
     @Test
-    public void testIsSameDate(){
+    public void testIsSameDate() {
         Date today = getToday();
         assertTrue(CommonUtil.isSameDate(today, today));
     }
 
     @Test
-    public void testIsNotSameDate(){
+    public void testIsNotSameDate() {
         assertTrue(CommonUtil.isNotSameDate(getToday(), getYesterDay()));
     }
 
     @Test
-    public void testIsToday(){
+    public void testIsToday() {
         assertTrue(CommonUtil.isToday(getToday()));
     }
 
     @Test
-    public void testIsNotToday(){
+    public void testIsNotToday() {
         assertTrue(CommonUtil.isNotToday(getYesterDay()));
     }
 
     private Date getYesterDay() {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
         calendar.add(Calendar.DAY_OF_YEAR, -1);
         return calendar.getTime();
     }
 
-    private Date getToday(){return new Date();}
+    private Date getToday() {
+        return new Date();
+    }
 }

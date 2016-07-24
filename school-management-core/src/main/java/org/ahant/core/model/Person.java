@@ -14,6 +14,7 @@ public class Person {
     String identificationMark1;
     String identificationMark2;
     Address address;
+    String emailAddress;
 
     public String getName() {
         return name;
@@ -77,5 +78,13 @@ public class Person {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 }
