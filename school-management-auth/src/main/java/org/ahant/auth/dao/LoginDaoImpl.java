@@ -1,5 +1,6 @@
 package org.ahant.auth.dao;
 
+import org.ahant.auth.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -12,6 +13,8 @@ public class LoginDaoImpl implements LoginDao {
 
     private JdbcTemplate jdbcTemplate;
     private String userPasswordQuery;
+    private String userDetailQuery;
+
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -24,11 +27,26 @@ public class LoginDaoImpl implements LoginDao {
         return jdbcTemplate.queryForObject(getUserPasswordQuery(), args, String.class);
     }
 
+    @Override
+    public User getUserDetails(String username) {
+        String[] args = {username};
+        return jdbcTemplate.queryForObject(getUserDetailQuery(), args, User.class);
+    }
+
     public String getUserPasswordQuery() {
         return userPasswordQuery;
     }
 
     public void setUserPasswordQuery(String userPasswordQuery) {
         this.userPasswordQuery = userPasswordQuery;
+    }
+
+
+    public String getUserDetailQuery() {
+        return userDetailQuery;
+    }
+
+    public void setUserDetailQuery(String userDetailQuery) {
+        this.userDetailQuery = userDetailQuery;
     }
 }

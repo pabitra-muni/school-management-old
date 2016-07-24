@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by ahant on 7/24/2016.
  */
 public class Person {
-    String name;
+    String fullName;
     Date birthDate;
     Gender gender;
     String contactNumber1;
@@ -16,12 +16,12 @@ public class Person {
     Address address;
     String emailAddress;
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public Date getBirthDate() {

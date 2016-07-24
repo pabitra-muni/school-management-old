@@ -9,12 +9,13 @@
     <import resource="application-context-core.xml"/>
     <context:component-scan base-package="org.ahant.auth.config"/>
     
-    <bean id="loginValidator" class="org.ahant.auth.controller.LoginValidatorImpl">
+    <bean id="loginController" class="org.ahant.auth.controller.LoginControllerImpl">
         <property name="loginDao" ref="loginDao"/>
     </bean>
 
     <bean id="loginDao" class="org.ahant.auth.dao.LoginDaoImpl">
         <property name="userPasswordQuery" value="${query.user.get.password}"/>
+        <property name="userDetailQuery" value="${query.user.get.details}"/>
     </bean>
 
 </beans>
