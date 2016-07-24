@@ -46,7 +46,7 @@ public class CommonUtil {
     }
 
     public static boolean isToday(final Date date){
-        return isSameDate(date, new Date(System.currentTimeMillis()));
+        return isSameDate(date, new Date());
     }
 
     public static boolean isNotToday(final Date date){
