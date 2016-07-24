@@ -3,10 +3,12 @@ package org.ahant.admission.util;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import org.ahant.core.model.School;
+import org.ahant.core.util.CommonUtil;
 import org.ahant.core.util.NumberGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
+import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 
 import static org.ahant.core.util.CommonUtil.resizeTo;
@@ -18,7 +20,7 @@ public class AdmissionNumberGenerator implements NumberGenerator {
     private School school;
     @Autowired
     Environment env;
-    private AtomicLong current;
+    private static AtomicLong current = new AtomicLong(System.currentTimeMillis());
 
     @Override
     public String generateNumber() {
@@ -26,14 +28,20 @@ public class AdmissionNumberGenerator implements NumberGenerator {
         StringBuilder admissionNumber = new StringBuilder();
         String schoolCode = resizeTo(getSchoolCode(), getSchoolCodeLengh(), getSchoolCodeSuffix());
         admissionNumber.append(schoolCode);
-        current = new AtomicLong(System.currentTimeMillis());
         admissionNumber.append(getUniqueNumber());
         generatedNumber = admissionNumber.toString();
         return generatedNumber;
     }
 
     private Long getUniqueNumber() {
+        updateCurrentDate();
         return current.incrementAndGet();
+    }
+
+    private synchronized void updateCurrentDate() {
+        if(CommonUtil.isNotToday(new Date(current.get()))){
+            current.set(System.currentTimeMillis());
+        }
     }
 
     private int getSchoolCodeLengh() {
