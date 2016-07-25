@@ -44,11 +44,13 @@ public class AdmissionNumberGenerator implements NumberGenerator {
         }
     }
 
-    private int getSchoolCodeLengh() {
+    // protected to facilitate tests
+    protected int getSchoolCodeLengh() {
         return Integer.valueOf(env.getProperty("school.code.length"));
     }
 
-    private String getSchoolCodeSuffix() {
+    // protected to facilitate tests
+    protected String getSchoolCodeSuffix() {
         return env.getProperty("school.code.suffix");
     }
 

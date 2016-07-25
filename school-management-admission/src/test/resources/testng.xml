@@ -1,14 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="SchoolManagement Test Suite: Auth">
-    <test name="Auth: Controller">
+<suite name="SchoolManagement Test Suite: Admission">
+    <test name="Admission: Util">
         <packages>
-            <package name="org.ahant.admission.controller.*" />
-        </packages>
-    </test>
-    <test name="Auth: DAO">
-        <packages>
-            <package name="org.ahant.admission.dao.*"/>
+            <package name="org.ahant.admission.*" />
         </packages>
     </test>
 </suite>
