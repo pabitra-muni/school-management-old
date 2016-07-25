@@ -32,6 +32,7 @@ public class AdmissionNumberGeneratorTest {
     private static final String SCHOOL_NAME = "ABCD XYZ";
     private static final String SHORT_SCHOOL_NAME = "AB";
     private static final String SCHOOL_CODE_SUFFIX = "_";
+    private static final int SECONDS_5 = 1*1000*5;
 
     @BeforeMethod
     public void init() {
@@ -104,12 +105,10 @@ public class AdmissionNumberGeneratorTest {
     }
 
     private void executeMethod() throws InterruptedException {
-        ExecutorService executorService = Executors.newFixedThreadPool(THREAD_SIZE);
         for (int i = 1; i++ <= THREAD_SIZE; ) {
-            executorService.execute(new MultiThreadTest());
+            (new Thread(new MultiThreadTest())).start();
         }
-        executorService.shutdown();
-        executorService.awaitTermination(2, TimeUnit.MINUTES);
+        Thread.sleep(SECONDS_5);
         assertEquals(admissionNumberSet.size(), THREAD_SIZE);
     }
 

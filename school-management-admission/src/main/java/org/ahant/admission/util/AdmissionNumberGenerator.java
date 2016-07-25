@@ -35,7 +35,7 @@ public class AdmissionNumberGenerator implements NumberGenerator {
 
     private Long getUniqueNumber() {
         updateCurrentDate();
-        return current.incrementAndGet();
+        return current.getAndDecrement();
     }
 
     private synchronized void updateCurrentDate() {
