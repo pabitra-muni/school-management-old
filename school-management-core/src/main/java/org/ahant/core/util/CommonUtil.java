@@ -12,7 +12,7 @@ public class CommonUtil {
         throw new IllegalAccessError("Utility class");
     }
 
-    public static String resizeTo(final String str, int resizeLength, final String resizeChar) {
+    public static String resizeTo(final String str, final int resizeLength, final char resizeChar) {
         String temp = str;
         if (temp.length() > resizeLength) {
             temp = temp.substring(0, resizeLength);
@@ -22,7 +22,7 @@ public class CommonUtil {
         return temp;
     }
 
-    public static String getCharacters(int size, final String val) {
+    public static String getCharacters(final int size, final char val) {
         StringBuilder temp = new StringBuilder();
         int counter = 1;
         while (counter <= size) {

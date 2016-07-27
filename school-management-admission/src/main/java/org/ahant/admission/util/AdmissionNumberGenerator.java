@@ -26,7 +26,7 @@ public class AdmissionNumberGenerator implements NumberGenerator {
     public String generateNumber() {
         String generatedNumber;
         StringBuilder admissionNumber = new StringBuilder();
-        String schoolCode = resizeTo(getSchoolCode(), getSchoolCodeLengh(), getSchoolCodeSuffix());
+        String schoolCode = resizeTo(getSchoolCode(), getSchoolCodeLengh(), getSchoolCodeSuffix().charAt(0));
         admissionNumber.append(schoolCode);
         admissionNumber.append(getUniqueNumber());
         generatedNumber = admissionNumber.toString();
