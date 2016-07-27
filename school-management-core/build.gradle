@@ -8,6 +8,8 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.18'
     compile 'org.slf4j:slf4j-simple:1.7.18'
     compile 'mysql:mysql-connector-java:5.1.6'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.8.1'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.1'
     runtime 'commons-dbcp:commons-dbcp:1.4'
     testCompile 'junit:junit:4.12'
     testCompile 'org.testng:testng:6.9.10'

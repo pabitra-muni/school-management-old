@@ -4,7 +4,9 @@ import com.google.common.base.Strings;
 import org.ahant.auth.dao.LoginDao;
 import org.ahant.auth.exception.InvalidCredentialException;
 import org.ahant.auth.model.User;
+import org.ahant.core.controller.TaskExecutor;
 import org.ahant.core.exception.NotFoundException;
+import org.ahant.core.model.TaskData;
 import org.ahant.core.util.cipher.Encryptor;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -15,11 +17,10 @@ import static org.ahant.auth.constants.LoginConstants.USER_NOT_FOUND;
 /**
  * Created by ahant on 3/19/2016.
  */
-public class LoginControllerImpl implements LoginController {
+public class AuthTaskExecutorOld {
 
     private LoginDao loginDao;
 
-    @Override
     public boolean isValidUser(User user){
         sanityCheck(user);
         if (!user.getPassword().equals(Encryptor.decode(loginDao.getPassword(user.getUserName())))) {
@@ -28,7 +29,7 @@ public class LoginControllerImpl implements LoginController {
         return true;
     }
 
-    @Override
+
     public User getUserDetails(final User user) {
         checkArgument(null != user);
         checkArgument(!Strings.isNullOrEmpty(user.getUserName()), MISSING_USER_NAME);
@@ -39,7 +40,7 @@ public class LoginControllerImpl implements LoginController {
         return userInfo;
     }
 
-    @Override
+
     public User validateAndGetDetails(User user) {
         return null;
     }
@@ -53,4 +54,5 @@ public class LoginControllerImpl implements LoginController {
     public void setLoginDao(LoginDao loginDao) {
         this.loginDao = loginDao;
     }
+
 }

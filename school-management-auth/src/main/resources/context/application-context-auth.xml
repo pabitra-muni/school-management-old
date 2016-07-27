@@ -9,7 +9,7 @@
     <import resource="application-context-core.xml"/>
     <context:component-scan base-package="org.ahant.auth.config"/>
     
-    <bean id="loginController" class="org.ahant.auth.controller.LoginControllerImpl">
+    <bean id="loginController" class="org.ahant.auth.controller.AuthTaskExecutorOld">
         <property name="loginDao" ref="loginDao"/>
     </bean>
 

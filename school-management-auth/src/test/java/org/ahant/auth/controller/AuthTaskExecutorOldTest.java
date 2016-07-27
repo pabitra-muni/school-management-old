@@ -17,16 +17,16 @@ import static org.testng.Assert.assertTrue;
 /**
  * Created by ahant on 3/19/2016.
  */
-public class LoginControllerImplTest {
+public class AuthTaskExecutorOldTest {
 
-    private LoginControllerImpl loginValidator;
+    private AuthTaskExecutorOld loginValidator;
     private LoginDao mockLoginDao;
     private static final String testUsername = "testUsername";
     private static final String testPassword = "testPassword";
 
     @BeforeMethod
     public void setUp() {
-        loginValidator = new LoginControllerImpl();
+        loginValidator = new AuthTaskExecutorOld();
     }
 
     @Test(expectedExceptions = {
