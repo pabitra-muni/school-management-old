@@ -1,6 +1,5 @@
 package org.ahant.auth.controller;
 
-import org.ahant.auth.dao.authDao;
 import org.ahant.auth.exception.InvalidCredentialException;
 import org.ahant.auth.model.User;
 import org.ahant.core.exception.ApplicationException;
@@ -10,7 +9,6 @@ import org.testng.annotations.Test;
 
 import static org.ahant.auth.constants.AuthConstants.INVALID_CREDENTIAL;
 import static org.ahant.auth.constants.AuthConstants.NO_USER;
-import static org.mockito.Mockito.mock;
 import static org.testng.Assert.*;
 
 /**
@@ -19,7 +17,6 @@ import static org.testng.Assert.*;
 public class AuthValidatorTest {
 
     private AuthValidator authValidator;
-    private authDao mockAuthDao;
     private static final String testUsername = "testUsername";
     private static final String testPassword = "testPassword";
 
