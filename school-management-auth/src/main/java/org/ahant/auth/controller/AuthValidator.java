@@ -17,11 +17,15 @@ public class AuthValidator implements DataValidator {
 
     @Override
     public boolean validate(TaskData taskData) {
+        return isValidUserInput(taskData, true);
+    }
+
+    static boolean isValidUserInput(TaskData taskData, boolean isPasswordValidationRequired) {
         boolean returnValue = false;
         Object source = taskData.getSource();
         if (source != null && source instanceof User) {
             User user = (User) source;
-            if (Strings.isNullOrEmpty(user.getUserName()) || Strings.isNullOrEmpty(user.getPassword())) {
+            if (Strings.isNullOrEmpty(user.getUserName()) || ((isPasswordValidationRequired) ? Strings.isNullOrEmpty(user.getPassword()) : false)) {
                 taskData.setException(new InvalidCredentialException(INVALID_CREDENTIAL));
             } else {
                 returnValue = true;
@@ -29,7 +33,6 @@ public class AuthValidator implements DataValidator {
         } else {
             taskData.setException(new ApplicationException(NO_USER));
         }
-
         return returnValue;
     }
 }

@@ -17,19 +17,6 @@ public class UserDetailValidator implements DataValidator {
 
     @Override
     public boolean validate(TaskData taskData) {
-        boolean returnValue = false;
-        Object source = taskData.getSource();
-        if (source != null && source instanceof User) {
-            User user = (User) source;
-            if (Strings.isNullOrEmpty(user.getUserName())) {
-                taskData.setException(new InvalidCredentialException(NO_USER_NAME));
-            } else {
-                returnValue = true;
-            }
-        } else {
-            taskData.setException(new ApplicationException(NO_USER));
-        }
-
-        return returnValue;
+        return AuthValidator.isValidUserInput(taskData, false);
     }
 }
