@@ -1,6 +1,6 @@
 package org.ahant.auth.controller;
 
-import org.ahant.auth.dao.LoginDao;
+import org.ahant.auth.dao.authDao;
 import org.ahant.auth.exception.InvalidCredentialException;
 import org.ahant.auth.model.User;
 import org.ahant.core.util.cipher.Encryptor;
@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import java.io.UnsupportedEncodingException;
 
-import static org.ahant.auth.constants.LoginConstants.INVALID_CREDENTIAL;
+import static org.ahant.auth.constants.AuthConstants.INVALID_CREDENTIAL;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertTrue;
@@ -20,7 +20,7 @@ import static org.testng.Assert.assertTrue;
 public class AuthTaskExecutorOldTest {
 
     private AuthTaskExecutorOld loginValidator;
-    private LoginDao mockLoginDao;
+    private authDao mockAuthDao;
     private static final String testUsername = "testUsername";
     private static final String testPassword = "testPassword";
 
@@ -58,18 +58,18 @@ public class AuthTaskExecutorOldTest {
     @Test(expectedExceptions = {InvalidCredentialException.class}, expectedExceptionsMessageRegExp = INVALID_CREDENTIAL)
     public void testValidateUser_IncorrectPassword() throws UnsupportedEncodingException {
 
-        mockLoginDao = mock(LoginDao.class);
-        when(mockLoginDao.getPassword(testUsername)).thenReturn(Encryptor.encode("wrongPassword"));
-        loginValidator.setLoginDao(mockLoginDao);
+        mockAuthDao = mock(authDao.class);
+        when(mockAuthDao.getPassword(testUsername)).thenReturn(Encryptor.encode("wrongPassword"));
+        loginValidator.setAuthDao(mockAuthDao);
 
         loginValidator.isValidUser(new User(testUsername, testPassword));
     }
 
     @Test
     public void testValidateUser_ValidUserDetails() throws UnsupportedEncodingException {
-        mockLoginDao = mock(LoginDao.class);
-        when(mockLoginDao.getPassword(testUsername)).thenReturn(Encryptor.encode(testPassword));
-        loginValidator.setLoginDao(mockLoginDao);
+        mockAuthDao = mock(authDao.class);
+        when(mockAuthDao.getPassword(testUsername)).thenReturn(Encryptor.encode(testPassword));
+        loginValidator.setAuthDao(mockAuthDao);
         assertTrue(loginValidator.isValidUser(new User(testUsername, testPassword)));
     }
 }

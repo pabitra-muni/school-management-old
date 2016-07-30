@@ -1,5 +1,6 @@
 package org.ahant.core.controller;
 
+import org.ahant.core.exception.ApplicationException;
 import org.ahant.core.model.Result;
 import org.ahant.core.model.TaskData;
 
@@ -13,6 +14,6 @@ public class SimpleResultBuilder implements ResultBuilder {
         if (finalResult == null) {
             finalResult = taskData.getTarget();
         }
-        return finalResult;
+        return (finalResult != null) ? finalResult : new ApplicationException();
     }
 }

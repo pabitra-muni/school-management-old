@@ -9,11 +9,33 @@
     <import resource="application-context-core.xml"/>
     <context:component-scan base-package="org.ahant.auth.config"/>
     
-    <bean id="loginController" class="org.ahant.auth.controller.AuthTaskExecutorOld">
-        <property name="loginDao" ref="loginDao"/>
+    <bean id="authController" class="org.ahant.core.controller.SimpleTaskController">
+        <property name="executor" ref="authExecutor"/>
     </bean>
 
-    <bean id="loginDao" class="org.ahant.auth.dao.LoginDaoImpl">
+    <bean id="authExecutor" parent="defaultExecutor">
+        <property name="validator" ref="authValidator"/>
+        <property name="processor" ref="authProcessor"/>
+    </bean>
+
+    <bean id="authValidator" class="org.ahant.auth.controller.AuthValidator"/>
+
+    <bean id="authProcessor" class="org.ahant.auth.controller.AuthProcessor">
+        <property name="authDao" ref="authDao"/>
+    </bean>
+
+    <bean id="userDetailExecutor" parent="defaultExecutor">
+        <property name="validator" ref="userDetailValidator"/>
+        <property name="processor" ref="userDetalProcessor"/>
+    </bean>
+
+    <bean id="userDetailValidator" class="org.ahant.auth.controller.UserDetailValidator"/>
+
+    <bean id="userDetailProcessor" class="org.ahant.auth.controller.UserDetailProcessor">
+        <property name="authDao" ref="authDao"/>
+    </bean>
+
+    <bean id="authDao" class="org.ahant.auth.dao.authDaoImpl">
         <property name="userPasswordQuery" value="${query.user.get.password}"/>
         <property name="userDetailQuery" value="${query.user.get.details}"/>
     </bean>

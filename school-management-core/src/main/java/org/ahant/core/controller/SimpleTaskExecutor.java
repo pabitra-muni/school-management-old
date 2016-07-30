@@ -26,4 +26,28 @@ public class SimpleTaskExecutor implements TaskExecutor {
     public Result buildResult(TaskData taskData) {
         return resultBuilder.buildResult(taskData);
     }
+
+    public ResultBuilder getResultBuilder() {
+        return resultBuilder;
+    }
+
+    public void setResultBuilder(ResultBuilder resultBuilder) {
+        this.resultBuilder = resultBuilder;
+    }
+
+    public DataValidator getValidator() {
+        return validator;
+    }
+
+    public void setValidator(DataValidator validator) {
+        this.validator = validator;
+    }
+
+    public DataProcessor getProcessor() {
+        return processor;
+    }
+
+    public void setProcessor(DataProcessor processor) {
+        this.processor = processor;
+    }
 }

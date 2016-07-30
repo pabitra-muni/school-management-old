@@ -15,15 +15,15 @@ import static org.mockito.Mockito.when;
 /**
  * Created by ahant on 3/20/2016.
  */
-public class LoginDaoImplTest {
+public class authDaoImplTest {
 
     private static final String encryptedPassword = "YWhhbnQxMjM=";
 
-    private LoginDaoImpl loginDao;
+    private authDaoImpl loginDao;
 
     @BeforeMethod
     public void setUp() {
-        loginDao = new LoginDaoImpl();
+        loginDao = new authDaoImpl();
     }
 
     @Test

@@ -14,12 +14,12 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:context/application-context-auth.xml"})
-public class LoginDaoImplIntegrationTest {
+public class authDaoImplIntegrationTest {
 
     private static final String encryptedPassword = "YWhhbnQxMjM=";
 
     @Autowired
-    private LoginDaoImpl loginDao;
+    private authDaoImpl loginDao;
 
     @Test
     public void testGetPassword() {

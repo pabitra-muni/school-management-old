@@ -21,5 +21,10 @@
         <property name="password" ref="dbPasswordFactory"/>
     </bean>
 
+    <bean id="defaultExecutor" class="org.ahant.core.controller.SimpleTaskExecutor">
+        <property name="resultBuilder" ref="defaultResultBuilder"/>
+    </bean>
+
+    <bean id="defaultResultBuilder" class="org.ahant.core.controller.SimpleResultBuilder"/>
 
 </beans>

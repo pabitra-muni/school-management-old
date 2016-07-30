@@ -18,4 +18,8 @@ public class SimpleTaskController implements TaskController {
         }
         return executor.buildResult(taskData);
     }
+
+    public void setExecutor(TaskExecutor executor) {
+        this.executor = executor;
+    }
 }
