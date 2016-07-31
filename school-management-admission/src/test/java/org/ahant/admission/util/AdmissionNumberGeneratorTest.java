@@ -120,7 +120,7 @@ public class AdmissionNumberGeneratorTest {
     private Callable<Boolean> isComplete() {
         return new Callable<Boolean>() {
             public Boolean call() throws Exception {
-                return admissionNumberSet.size() == THREAD_SIZE;
+                return admissionNumberSet.size() >= THREAD_SIZE;
             }
         };
     }
