@@ -19,11 +19,11 @@ public class Fee {
     }
 
     public Date getPaymentDate() {
-        return paymentDate;
+        return new Date(paymentDate.getTime());
     }
 
     public void setPaymentDate(final Date paymentDate) {
-        this.paymentDate = paymentDate;
+        this.paymentDate = new Date(paymentDate.getTime());
     }
 
     public String getFeeDetail() {

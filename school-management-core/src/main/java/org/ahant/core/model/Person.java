@@ -25,11 +25,11 @@ public class Person {
     }
 
     public Date getBirthDate() {
-        return birthDate;
+        return new Date(birthDate.getTime());
     }
 
     public void setBirthDate(final Date birthDate) {
-        this.birthDate = birthDate;
+        this.birthDate = new Date(birthDate.getTime());
     }
 
     public Gender getGender() {

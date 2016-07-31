@@ -24,11 +24,11 @@ public class Admission {
     }
 
     public Date getAdmissionDate() {
-        return admissionDate;
+        return new Date(admissionDate.getTime());
     }
 
     public void setAdmissionDate(final Date admissionDate) {
-        this.admissionDate = admissionDate;
+        this.admissionDate = new Date(admissionDate.getTime());
     }
 
     public Student getStudent() {
