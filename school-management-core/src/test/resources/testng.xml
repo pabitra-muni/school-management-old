@@ -6,4 +6,9 @@
             <package name="org.ahant.core.util.*" />
         </packages>
     </test>
+    <test name="Core: Controller">
+        <packages>
+            <package name="org.ahant.core.controller.*" />
+        </packages>
+    </test>
 </suite>
