@@ -9,11 +9,11 @@ import java.util.Date;
  * Created by ahant on 7/16/2016.
  */
 public class Admission {
-    String admissionNumber;
-    Date admissionDate;
-    Student student;
-    Fee fee;
-    String remarks;
+    private String admissionNumber;
+    private Date admissionDate;
+    private Student student;
+    private Fee fee;
+    private String remarks;
 
     public String getAdmissionNumber() {
         return admissionNumber;
@@ -27,7 +27,7 @@ public class Admission {
         return admissionDate;
     }
 
-    public void setAdmissionDate(Date admissionDate) {
+    public void setAdmissionDate(final Date admissionDate) {
         this.admissionDate = admissionDate;
     }
 
@@ -35,7 +35,7 @@ public class Admission {
         return student;
     }
 
-    public void setStudent(Student student) {
+    public void setStudent(final Student student) {
         this.student = student;
     }
 
@@ -43,7 +43,7 @@ public class Admission {
         return fee;
     }
 
-    public void setFee(Fee fee) {
+    public void setFee(final Fee fee) {
         this.fee = fee;
     }
 

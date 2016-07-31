@@ -4,11 +4,11 @@ package org.ahant.core.model;
  * Created by ahant on 7/16/2016.
  */
 public class Student extends Person implements Result {
-    Person father;
-    Person mother;
-    Person guardian;
-    String standard;
-    String section;
+    private Person father;
+    private Person mother;
+    private Person guardian;
+    private String standard;
+    private String section;
 
     public Person getFather() {
         return father;

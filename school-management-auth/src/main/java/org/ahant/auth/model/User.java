@@ -8,9 +8,9 @@ import org.ahant.core.model.Result;
  */
 public class User extends Person implements Result{
 
-	String userName;
-	String password;
-	Role role;
+	private String userName;
+	private String password;
+	private Role role;
 
 	public User(String userName, String password) {
 		setUserName(userName);

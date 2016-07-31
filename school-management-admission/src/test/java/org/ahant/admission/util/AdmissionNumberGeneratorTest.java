@@ -105,7 +105,7 @@ public class AdmissionNumberGeneratorTest {
             (new Thread(new MultiThreadTest())).start();
         }
 
-        await().atMost(3, SECONDS).until(isComplete());
+        await().atMost(3, SECONDS).until(() -> admissionNumberSet.size() >= THREAD_SIZE);
         assertEquals(admissionNumberSet.size(), THREAD_SIZE);
     }
 
@@ -115,13 +115,5 @@ public class AdmissionNumberGeneratorTest {
         public void run() {
             admissionNumberSet.add(source.generateNumber());
         }
-    }
-
-    private Callable<Boolean> isComplete() {
-        return new Callable<Boolean>() {
-            public Boolean call() throws Exception {
-                return admissionNumberSet.size() >= THREAD_SIZE;
-            }
-        };
     }
 }

@@ -1,5 +1,7 @@
 package org.ahant.core.util.cipher;
 
+import com.google.common.base.Charsets;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
@@ -14,7 +16,7 @@ public class Encryptor {
     }
 
     public static String encode(String value) throws UnsupportedEncodingException {
-        return Base64.getEncoder().encodeToString(value.getBytes("utf-8"));
+        return Base64.getEncoder().encodeToString(value.getBytes(Charsets.UTF_8));
     }
 
     public static String decode(String encodedValue) {

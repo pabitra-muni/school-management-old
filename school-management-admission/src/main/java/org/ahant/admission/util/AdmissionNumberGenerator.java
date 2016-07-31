@@ -46,7 +46,7 @@ public class AdmissionNumberGenerator implements NumberGenerator {
 
     // protected to facilitate tests
     protected int getSchoolCodeLengh() {
-        return Integer.valueOf(env.getProperty("school.code.length"));
+        return Integer.parseInt(env.getProperty("school.code.length"));
     }
 
     // protected to facilitate tests

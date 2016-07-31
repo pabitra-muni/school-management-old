@@ -6,7 +6,7 @@ package org.ahant.core.model;
 public enum Gender {
     MALE("Male"), FEMALE("Female");
 
-    String value;
+    private String value;
 
     Gender(String value) {
         this.value = value;

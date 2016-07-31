@@ -6,9 +6,9 @@ import java.util.Date;
  * Created by ahant on 7/16/2016.
  */
 public class Fee {
-    double amount;
-    Date paymentDate;
-    String feeDetail;
+    private double amount;
+    private Date paymentDate;
+    private String feeDetail;
 
     public double getAmount() {
         return amount;
@@ -22,7 +22,7 @@ public class Fee {
         return paymentDate;
     }
 
-    public void setPaymentDate(Date paymentDate) {
+    public void setPaymentDate(final Date paymentDate) {
         this.paymentDate = paymentDate;
     }
 
