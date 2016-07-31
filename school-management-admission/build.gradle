@@ -9,4 +9,5 @@ dependencies {
     testCompile 'com.google.inject:guice:4.0'
     testCompile 'org.mockito:mockito-all:1.10.19'
     testCompile 'org.springframework:spring-test:4.2.5.RELEASE'
+    testCompile 'org.awaitility:awaitility:2.0.0'
 }

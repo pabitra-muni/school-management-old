@@ -25,7 +25,7 @@ public class AuthValidator implements DataValidator {
         Object source = taskData.getSource();
         if (source != null && source instanceof User) {
             User user = (User) source;
-            if (Strings.isNullOrEmpty(user.getUserName()) || ((isPasswordValidationRequired) ? Strings.isNullOrEmpty(user.getPassword()) : false)) {
+            if (Strings.isNullOrEmpty(user.getUserName()) || (isPasswordValidationRequired ? Strings.isNullOrEmpty(user.getPassword()) : false)) {
                 taskData.setException(new InvalidCredentialException(INVALID_CREDENTIAL));
             } else {
                 returnValue = true;

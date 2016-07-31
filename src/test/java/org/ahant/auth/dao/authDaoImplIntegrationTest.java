@@ -19,7 +19,7 @@ public class authDaoImplIntegrationTest {
     private static final String encryptedPassword = "YWhhbnQxMjM=";
 
     @Autowired
-    private authDaoImpl loginDao;
+    private AuthDaoImpl loginDao;
 
     @Test
     public void testGetPassword() {

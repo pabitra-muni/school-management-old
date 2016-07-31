@@ -1,5 +1,6 @@
 package org.ahant.core.controller;
 
+import org.ahant.core.exception.ApplicationException;
 import org.ahant.core.model.Result;
 import org.ahant.core.model.TaskData;
 
@@ -12,11 +13,17 @@ public class SimpleTaskController implements TaskController {
 
     @Override
     public Result executeTask(TaskData taskData) {
-        boolean isValid = executor.validate(taskData);
-        if (isValid && taskData.getException() == null) {
-            executor.process(taskData);
+        Result result;
+        if (taskData != null) {
+            boolean isValid = executor.validate(taskData);
+            if (isValid && taskData.getException() == null) {
+                executor.process(taskData);
+            }
+            result = executor.buildResult(taskData);
+        } else {
+            result = new ApplicationException();
         }
-        return executor.buildResult(taskData);
+        return result;
     }
 
     public void setExecutor(TaskExecutor executor) {

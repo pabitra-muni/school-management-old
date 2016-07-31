@@ -1,11 +1,9 @@
 package org.ahant.core.model;
 
-import java.util.Date;
-
 /**
  * Created by ahant on 7/16/2016.
  */
-public class Student extends Person implements Result{
+public class Student extends Person implements Result {
     Person father;
     Person mother;
     Person guardian;

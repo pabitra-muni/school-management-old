@@ -6,11 +6,15 @@ import org.testng.annotations.Test;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.Callable;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.awaitility.Awaitility.await;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+
 
 /**
  * Created by ahant on 7/24/2016.
@@ -24,7 +28,7 @@ public class AdmissionNumberGeneratorTest {
     private static final String SCHOOL_NAME = "ABCD XYZ";
     private static final String SHORT_SCHOOL_NAME = "AB";
     private static final String SCHOOL_CODE_SUFFIX = "_";
-    private static final long WAITING_TIME = 1*1000*1;
+    private static final long WAITING_TIME = 1 * 1000 * 1;
 
     @BeforeMethod
     public void init() {
@@ -100,7 +104,8 @@ public class AdmissionNumberGeneratorTest {
         for (int i = 1; i++ <= THREAD_SIZE; ) {
             (new Thread(new MultiThreadTest())).start();
         }
-        Thread.sleep(WAITING_TIME);
+
+        await().atMost(3, SECONDS).until(isComplete());
         assertEquals(admissionNumberSet.size(), THREAD_SIZE);
     }
 
@@ -110,5 +115,13 @@ public class AdmissionNumberGeneratorTest {
         public void run() {
             admissionNumberSet.add(source.generateNumber());
         }
+    }
+
+    private Callable<Boolean> isComplete() {
+        return new Callable<Boolean>() {
+            public Boolean call() throws Exception {
+                return admissionNumberSet.size() == THREAD_SIZE;
+            }
+        };
     }
 }
