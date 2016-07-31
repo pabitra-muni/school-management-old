@@ -39,17 +39,17 @@ jacocoTestReport {
     sourceDirectories = files(subprojects.sourceSets.main.allSource.srcDirs)
     classDirectories = files(subprojects.sourceSets.main.output)
     executionData = files(subprojects.jacocoTestReport.executionData)
+
     reports {
         html.enabled = true
         xml.enabled = true
         csv.enabled = false
     }
-    onlyIf = {
-        true
-    }
-    doFirst {
-        executionData = files(executionData.findAll {
-            it.exists()
+    onlyIf = { true }
+
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it, excludes: ['**/model/**', '**/constants/**', '**/config/**', '**/exception/**'])
         })
     }
 }
