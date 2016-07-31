@@ -4,17 +4,19 @@ version '1.1-SNAPSHOT'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-allprojects{
+allprojects {
     repositories {
         mavenCentral()
     }
     apply plugin: 'java'
     apply plugin: 'jacoco'
+
+    jacoco {
+        toolVersion = '0.7.7.201606060606'
+    }
 }
 
 sourceCompatibility = 1.8
-
-allprojects{ jacocoTestReport.dependsOn test }
 
 subprojects {
     test {
@@ -28,6 +30,27 @@ subprojects {
         ignoreFailures = false
         reports.junitXml.enabled = false
         reports.html.enabled = true
+    }
+}
+
+jacocoTestReport {
+    dependsOn = subprojects.test
+    additionalSourceDirs = files(subprojects.sourceSets.main.allSource.srcDirs)
+    sourceDirectories = files(subprojects.sourceSets.main.allSource.srcDirs)
+    classDirectories = files(subprojects.sourceSets.main.output)
+    executionData = files(subprojects.jacocoTestReport.executionData)
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        csv.enabled = false
+    }
+    onlyIf = {
+        true
+    }
+    doFirst {
+        executionData = files(executionData.findAll {
+            it.exists()
+        })
     }
 }
 
