@@ -1,22 +1,14 @@
 package org.ahant.admission.util;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import org.ahant.core.model.School;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -32,7 +24,7 @@ public class AdmissionNumberGeneratorTest {
     private static final String SCHOOL_NAME = "ABCD XYZ";
     private static final String SHORT_SCHOOL_NAME = "AB";
     private static final String SCHOOL_CODE_SUFFIX = "_";
-    private static final int SECONDS_5 = 1*1000*5;
+    private static final long WAITING_TIME = 1*1000*1;
 
     @BeforeMethod
     public void init() {
@@ -108,7 +100,7 @@ public class AdmissionNumberGeneratorTest {
         for (int i = 1; i++ <= THREAD_SIZE; ) {
             (new Thread(new MultiThreadTest())).start();
         }
-        Thread.sleep(SECONDS_5);
+        Thread.sleep(WAITING_TIME);
         assertEquals(admissionNumberSet.size(), THREAD_SIZE);
     }
 
