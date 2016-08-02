@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:context/application-context-auth.xml"})
-public class authDaoImplIntegrationTest1 {
+public class AuthDaoImplIntegrationTest {
 
     private static final String encryptedPassword = "YWhhbnQxMjM=";
 
