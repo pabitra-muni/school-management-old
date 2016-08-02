@@ -1,6 +1,6 @@
 package org.ahant.auth.controller;
 
-import org.ahant.auth.dao.AuthDao;
+import org.ahant.auth.dao.AuthDao1;
 import org.ahant.auth.model.User;
 import org.ahant.core.exception.NotFoundException;
 import org.ahant.core.model.TaskData;
@@ -17,13 +17,13 @@ import static org.testng.Assert.*;
  */
 public class UserDetailProcessorTest {
     private UserDetailProcessor userDetailProcessor;
-    private AuthDao authDao;
+    private AuthDao1 authDao;
     private static final String testUsername = "testUsername";
 
     @BeforeMethod
     public void setUp() {
         userDetailProcessor = new UserDetailProcessor();
-        authDao = mock(AuthDao.class);
+        authDao = mock(AuthDao1.class);
         userDetailProcessor.setAuthDao(authDao);
     }
 

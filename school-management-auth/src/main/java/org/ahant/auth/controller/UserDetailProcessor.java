@@ -1,6 +1,6 @@
 package org.ahant.auth.controller;
 
-import org.ahant.auth.dao.AuthDao;
+import org.ahant.auth.dao.AuthDao1;
 import org.ahant.auth.model.User;
 import org.ahant.core.controller.DataProcessor;
 import org.ahant.core.exception.NotFoundException;
@@ -12,7 +12,7 @@ import static org.ahant.auth.constants.AuthConstants.USER_NOT_FOUND;
  * Created by ahant on 7/27/2016.
  */
 public class UserDetailProcessor implements DataProcessor {
-    private AuthDao authDao;
+    private AuthDao1 authDao;
 
     @Override
     public void process(TaskData taskData) {
@@ -25,7 +25,7 @@ public class UserDetailProcessor implements DataProcessor {
         }
     }
 
-    public void setAuthDao(AuthDao authDao) {
+    public void setAuthDao(AuthDao1 authDao) {
         this.authDao = authDao;
     }
 }

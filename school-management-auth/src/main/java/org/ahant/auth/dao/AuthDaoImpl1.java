@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 /**
  * Created by ahant on 3/19/2016.
  */
-public class AuthDaoImpl implements AuthDao {
+public class AuthDaoImpl1 implements AuthDao1 {
 
     private JdbcTemplate jdbcTemplate;
     private String userPasswordQuery;

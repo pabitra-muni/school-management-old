@@ -1,6 +1,6 @@
 package org.ahant.auth.controller;
 
-import org.ahant.auth.dao.AuthDao;
+import org.ahant.auth.dao.AuthDao1;
 import org.ahant.auth.exception.InvalidCredentialException;
 import org.ahant.auth.model.User;
 import org.ahant.core.controller.DataProcessor;
@@ -14,7 +14,7 @@ import static org.ahant.auth.constants.AuthConstants.INVALID_CREDENTIAL;
  * Created by ahant on 7/27/2016.
  */
 public class AuthProcessor implements DataProcessor {
-    private AuthDao authDao;
+    private AuthDao1 authDao;
 
     @Override
     public void process(TaskData taskData) {
@@ -26,7 +26,7 @@ public class AuthProcessor implements DataProcessor {
         }
     }
 
-    public void setAuthDao(AuthDao authDao) {
+    public void setAuthDao(AuthDao1 authDao) {
         this.authDao = authDao;
     }
 }

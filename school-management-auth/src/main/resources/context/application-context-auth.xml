@@ -35,7 +35,7 @@
         <property name="authDao" ref="authDao"/>
     </bean>
 
-    <bean id="authDao" class="org.ahant.auth.dao.AuthDaoImpl">
+    <bean id="authDao" class="org.ahant.auth.dao.AuthDaoImpl1">
         <property name="userPasswordQuery" value="${query.user.get.password}"/>
         <property name="userDetailQuery" value="${query.user.get.details}"/>
     </bean>

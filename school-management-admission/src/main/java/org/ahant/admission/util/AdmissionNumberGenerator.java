@@ -11,6 +11,7 @@ import org.springframework.core.env.Environment;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static org.ahant.core.util.CommonUtil.resizeTo;
 
 /**
@@ -55,12 +56,15 @@ public class AdmissionNumberGenerator implements NumberGenerator {
     }
 
     private String getSchoolCode() {
+        if(school == null){
+
+        }
         String temp = null;
         if (!Strings.isNullOrEmpty(school.getCode())) {
             temp = school.getCode();
         }
         if (temp == null) {
-            Preconditions.checkArgument(!Strings.isNullOrEmpty(school.getName()), "Either school name or code is required.");
+            checkArgument(!Strings.isNullOrEmpty(school.getName()), "Either school name or code is required.");
             temp = school.getName();
         }
         return temp;

@@ -1,6 +1,6 @@
 package org.ahant.auth.controller;
 
-import org.ahant.auth.dao.AuthDao;
+import org.ahant.auth.dao.AuthDao1;
 import org.ahant.auth.exception.InvalidCredentialException;
 import org.ahant.auth.model.User;
 import org.ahant.core.model.EmptyResult;
@@ -22,7 +22,7 @@ import static org.testng.Assert.*;
  */
 public class AuthProcessorTest {
     private AuthProcessor authProcessor;
-    private AuthDao mockAuthDao;
+    private AuthDao1 mockAuthDao;
     private static final String testUsername = "testUsername";
     private static final String testPassword = "testPassword";
     private static final String wrongPassword = "wrongPassword";
@@ -34,7 +34,7 @@ public class AuthProcessorTest {
 
     @Test
     public void testValidateUser_ValidUser() throws UnsupportedEncodingException {
-        mockAuthDao = mock(AuthDao.class);
+        mockAuthDao = mock(AuthDao1.class);
         when(mockAuthDao.getPassword(testUsername)).thenReturn(Encryptor.encode(testPassword));
         authProcessor.setAuthDao(mockAuthDao);
         TaskData data = getTaskData();
@@ -47,7 +47,7 @@ public class AuthProcessorTest {
 
     @Test
     public void testValidateUser_InvalidUser() throws UnsupportedEncodingException {
-        mockAuthDao = mock(AuthDao.class);
+        mockAuthDao = mock(AuthDao1.class);
         when(mockAuthDao.getPassword(testUsername)).thenReturn(Encryptor.encode(wrongPassword));
         authProcessor.setAuthDao(mockAuthDao);
         TaskData data = getTaskData();
