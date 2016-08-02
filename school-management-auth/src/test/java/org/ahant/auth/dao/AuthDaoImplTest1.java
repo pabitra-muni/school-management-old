@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by ahant on 3/20/2016.
  */
-public class AuthDaoImplTest {
+public class AuthDaoImplTest1 {
 
     private static final String encryptedPassword = "YWhhbnQxMjM=";
 
