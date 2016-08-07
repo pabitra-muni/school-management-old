@@ -13,24 +13,23 @@ import static org.ahant.auth.constants.AuthConstants.NO_USER;
 /**
  * Created by ahant on 7/27/2016.
  */
-public class AuthValidator implements DataValidator {
+public class AuthValidator implements DataValidator<User> {
 
     @Override
-    public boolean validate(TaskData taskData) {
+    public boolean validate(TaskData<User> taskData) {
         return isValidUserInput(taskData, true);
     }
 
-    static boolean isValidUserInput(TaskData taskData, boolean isPasswordValidationRequired) {
+    static boolean isValidUserInput(TaskData<User> taskData, boolean isPasswordValidationRequired) {
         boolean returnValue = false;
-        Object source = taskData.getSource();
-        if (source != null && source instanceof User) {
-            User user = (User) source;
+        User user = taskData.getSource();
+        if(user !=null) {
             if (Strings.isNullOrEmpty(user.getUserName()) || (isPasswordValidationRequired ? Strings.isNullOrEmpty(user.getPassword()) : false)) {
                 taskData.setException(new InvalidCredentialException(INVALID_CREDENTIAL));
             } else {
                 returnValue = true;
             }
-        } else {
+        }else{
             taskData.setException(new ApplicationException(NO_USER));
         }
         return returnValue;

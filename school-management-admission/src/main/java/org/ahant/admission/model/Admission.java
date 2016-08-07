@@ -1,6 +1,7 @@
 package org.ahant.admission.model;
 
 import org.ahant.core.model.Fee;
+import org.ahant.core.model.Input;
 import org.ahant.core.model.Student;
 
 import java.util.Date;
@@ -8,7 +9,7 @@ import java.util.Date;
 /**
  * Created by ahant on 7/16/2016.
  */
-public class Admission {
+public class Admission implements Input {
     private String admissionNumber;
     private Date admissionDate;
     private Student student;

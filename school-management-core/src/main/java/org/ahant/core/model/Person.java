@@ -1,6 +1,7 @@
 package org.ahant.core.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by ahant on 7/24/2016.
@@ -9,10 +10,8 @@ public class Person {
     private String fullName;
     private Date birthDate;
     private Gender gender;
-    private String contactNumber1;
-    private String contactNumber2;
-    private String identificationMark1;
-    private String identificationMark2;
+    private List<String> contactNumberList;
+    private List<String> identificationMarkList;
     private Address address;
     private String emailAddress;
 
@@ -40,36 +39,20 @@ public class Person {
         this.gender = gender;
     }
 
-    public String getContactNumber1() {
-        return contactNumber1;
+    public List<String> getContactNumberList() {
+        return contactNumberList;
     }
 
-    public void setContactNumber1(String contactNumber1) {
-        this.contactNumber1 = contactNumber1;
+    public void setContactNumberList(List<String> contactNumberList) {
+        this.contactNumberList = contactNumberList;
     }
 
-    public String getContactNumber2() {
-        return contactNumber2;
+    public List<String> getIdentificationMarkList() {
+        return identificationMarkList;
     }
 
-    public void setContactNumber2(String contactNumber2) {
-        this.contactNumber2 = contactNumber2;
-    }
-
-    public String getIdentificationMark1() {
-        return identificationMark1;
-    }
-
-    public void setIdentificationMark1(String identificationMark1) {
-        this.identificationMark1 = identificationMark1;
-    }
-
-    public String getIdentificationMark2() {
-        return identificationMark2;
-    }
-
-    public void setIdentificationMark2(String identificationMark2) {
-        this.identificationMark2 = identificationMark2;
+    public void setIdentificationMarkList(List<String> identificationMarkList) {
+        this.identificationMarkList = identificationMarkList;
     }
 
     public Address getAddress() {

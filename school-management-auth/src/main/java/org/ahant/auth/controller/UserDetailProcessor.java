@@ -11,12 +11,12 @@ import static org.ahant.auth.constants.AuthConstants.USER_NOT_FOUND;
 /**
  * Created by ahant on 7/27/2016.
  */
-public class UserDetailProcessor implements DataProcessor {
+public class UserDetailProcessor implements DataProcessor<User> {
     private AuthDao authDao;
 
     @Override
-    public void process(TaskData taskData) {
-        final User user = (User) taskData.getSource();
+    public void process(TaskData<User> taskData) {
+        final User user = taskData.getSource();
         final User userDetails = authDao.getUserDetails(user.getUserName());
         if (null == userDetails) {
             taskData.setException(new NotFoundException(String.format(USER_NOT_FOUND, user.getUserName())));

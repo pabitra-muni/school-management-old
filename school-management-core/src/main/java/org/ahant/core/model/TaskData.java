@@ -5,16 +5,16 @@ import org.ahant.core.exception.ResultException;
 /**
  * Created by ahant on 7/27/2016.
  */
-public class TaskData {
-    private Object source;
+public class TaskData<T extends Input> {
+    private T source;
     private Result target;
     private ResultException exception;
 
-    public Object getSource() {
+    public T getSource() {
         return source;
     }
 
-    public void setSource(Object source) {
+    public void setSource(T source) {
         this.source = source;
     }
 

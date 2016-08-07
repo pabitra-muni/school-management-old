@@ -1,12 +1,13 @@
 package org.ahant.auth.model;
 
+import org.ahant.core.model.Input;
 import org.ahant.core.model.Person;
 import org.ahant.core.model.Result;
 
 /**
  * Created by ahant on 3/19/2016.
  */
-public class User extends Person implements Result{
+public class User extends Person implements Result, Input{
 
 	private String userName;
 	private String password;
