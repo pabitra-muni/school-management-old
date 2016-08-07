@@ -27,7 +27,7 @@ public class AuthValidatorTest {
 
     @Test
     public void testValidateUser_UserNull() {
-        TaskData data = getTaskData();
+        TaskData<User> data = getTaskData();
         data.setSource(null);
         assertFalse(authValidator.validate(data));
         assertNotNull(data.getException());
@@ -39,7 +39,7 @@ public class AuthValidatorTest {
 
     @Test
     public void testValidateUser_UsernameNull() {
-        TaskData data = getTaskData();
+        TaskData<User> data = getTaskData();
         data.setSource(new User(null, testPassword));
         assertFalse(authValidator.validate(data));
         assertNotNull(data.getException());
@@ -51,7 +51,7 @@ public class AuthValidatorTest {
 
     @Test
     public void testValidateUser_EmptyUserName() {
-        TaskData data = getTaskData();
+        TaskData<User> data = getTaskData();
         data.setSource(new User("", testPassword));
         assertFalse(authValidator.validate(data));
         assertNotNull(data.getException());
@@ -63,7 +63,7 @@ public class AuthValidatorTest {
 
     @Test
     public void testValidateUser_EmptyPassword() {
-        TaskData data = getTaskData();
+        TaskData<User> data = getTaskData();
         data.setSource(new User(testUsername, ""));
         assertFalse(authValidator.validate(data));
         assertNotNull(data.getException());
@@ -75,7 +75,7 @@ public class AuthValidatorTest {
 
     @Test
     public void testValidateUser_PasswordNull() {
-        TaskData data = getTaskData();
+        TaskData<User> data = getTaskData();
         data.setSource(new User(testUsername, null));
         assertFalse(authValidator.validate(data));
         assertNotNull(data.getException());
@@ -87,13 +87,13 @@ public class AuthValidatorTest {
 
     @Test
     public void testValidateUser_ValidUserDetails() {
-        TaskData data = getTaskData();
+        TaskData<User> data = getTaskData();
         data.setSource(new User(testUsername, testPassword));
         assertTrue(authValidator.validate(data));
         assertNull(data.getException());
     }
 
-    private TaskData getTaskData() {
-        return new TaskData();
+    private TaskData<User> getTaskData() {
+        return new TaskData<User>();
     }
 }
