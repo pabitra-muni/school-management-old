@@ -28,7 +28,6 @@ public class AdmissionNumberGeneratorTest {
     private static final String SCHOOL_NAME = "ABCD XYZ";
     private static final String SHORT_SCHOOL_NAME = "AB";
     private static final String SCHOOL_CODE_SUFFIX = "_";
-    private static final long WAITING_TIME = 1 * 1000 * 1;
 
     @BeforeMethod
     public void init() {
@@ -105,7 +104,7 @@ public class AdmissionNumberGeneratorTest {
             (new Thread(new MultiThreadTest())).start();
         }
 
-        await().atMost(3, SECONDS).until(() -> admissionNumberSet.size() >= THREAD_SIZE);
+        await().atMost(5, SECONDS).until(() -> admissionNumberSet.size() >= THREAD_SIZE);
         assertEquals(admissionNumberSet.size(), THREAD_SIZE);
     }
 

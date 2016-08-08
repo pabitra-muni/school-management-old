@@ -5,6 +5,8 @@ import org.ahant.core.model.Input;
 import org.ahant.core.model.Result;
 import org.ahant.core.model.TaskData;
 
+import static org.ahant.core.util.CommonUtil.buildException;
+
 /**
  * Created by ahant on 7/27/2016.
  */
@@ -22,7 +24,7 @@ public class SimpleTaskController<T extends Input> implements TaskController<T> 
             }
             result = executor.buildResult(taskData);
         } else {
-            result = new ApplicationException();
+            result = buildException(ApplicationException.class, "");
         }
         return result;
     }

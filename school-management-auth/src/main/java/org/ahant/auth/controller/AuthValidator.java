@@ -9,6 +9,7 @@ import org.ahant.core.model.TaskData;
 
 import static org.ahant.auth.constants.AuthConstants.INVALID_CREDENTIAL;
 import static org.ahant.auth.constants.AuthConstants.NO_USER;
+import static org.ahant.core.util.CommonUtil.buildException;
 
 /**
  * Created by ahant on 7/27/2016.
@@ -25,7 +26,7 @@ public class AuthValidator implements DataValidator<User> {
         User user = taskData.getSource();
         if(user !=null) {
             if (Strings.isNullOrEmpty(user.getUserName()) || (isPasswordValidationRequired ? Strings.isNullOrEmpty(user.getPassword()) : false)) {
-                taskData.setException(new InvalidCredentialException(INVALID_CREDENTIAL));
+                taskData.setException(buildException(InvalidCredentialException.class, INVALID_CREDENTIAL));
             } else {
                 returnValue = true;
             }

@@ -9,6 +9,7 @@ import org.ahant.core.model.TaskData;
 import org.ahant.core.util.cipher.Encryptor;
 
 import static org.ahant.auth.constants.AuthConstants.INVALID_CREDENTIAL;
+import static org.ahant.core.util.CommonUtil.buildException;
 
 /**
  * Created by ahant on 7/27/2016.
@@ -20,7 +21,7 @@ public class AuthProcessor implements DataProcessor<User> {
     public void process(TaskData<User> taskData) {
         final User user = taskData.getSource();
         if (!user.getPassword().equals(Encryptor.decode(authDao.getPassword(user.getUserName())))) {
-            taskData.setException(new InvalidCredentialException(INVALID_CREDENTIAL));
+            taskData.setException(buildException(InvalidCredentialException.class, INVALID_CREDENTIAL));
         } else {
             taskData.setTarget(new EmptyResult());
         }

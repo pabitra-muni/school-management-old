@@ -3,7 +3,12 @@
 <suite name="SchoolManagement Test Suite: Admission">
     <test name="Admission: Util">
         <packages>
-            <package name="org.ahant.admission.*" />
+            <package name="org.ahant.admission.util.*" />
+        </packages>
+    </test>
+    <test name="Admission: Controller">
+        <packages>
+            <package name="org.ahant.admission.controller.*" />
         </packages>
     </test>
 </suite>
