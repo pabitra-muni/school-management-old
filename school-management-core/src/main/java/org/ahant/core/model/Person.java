@@ -1,18 +1,25 @@
 package org.ahant.core.model;
 
+import org.ahant.core.annotation.Field;
+import org.ahant.core.annotation.Required;
+
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by ahant on 7/24/2016.
  */
+@Required
 public class Person {
     private String fullName;
     private Date birthDate;
     private Gender gender;
+    @Field(name = "contactNumber")
     private List<String> contactNumberList;
+    @Field(name = "identificationMark")
     private List<String> identificationMarkList;
     private Address address;
+    @Field(optional = true)
     private String emailAddress;
 
     public String getFullName() {

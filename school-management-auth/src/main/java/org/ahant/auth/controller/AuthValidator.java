@@ -24,14 +24,14 @@ public class AuthValidator implements DataValidator<User> {
     static boolean isValidUserInput(TaskData<User> taskData, boolean isPasswordValidationRequired) {
         boolean returnValue = false;
         User user = taskData.getSource();
-        if(user !=null) {
+        if (user != null) {
             if (Strings.isNullOrEmpty(user.getUserName()) || (isPasswordValidationRequired ? Strings.isNullOrEmpty(user.getPassword()) : false)) {
                 taskData.setException(buildException(InvalidCredentialException.class, INVALID_CREDENTIAL));
             } else {
                 returnValue = true;
             }
-        }else{
-            taskData.setException(new ApplicationException(NO_USER));
+        } else {
+            taskData.setException(buildException(ApplicationException.class, NO_USER));
         }
         return returnValue;
     }

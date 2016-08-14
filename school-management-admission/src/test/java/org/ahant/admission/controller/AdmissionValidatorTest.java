@@ -33,5 +33,7 @@ public class AdmissionValidatorTest {
         assertEquals(taskData.getException().getMessage(), NO_ADMISSION_DETAIL_ERROR_MSG);
     }
 
-    private TaskData<Admission> getTaskData(){ return new TaskData<Admission>();}
+
+
+    private TaskData<Admission> getTaskData(){ return new TaskData<>();}
 }
