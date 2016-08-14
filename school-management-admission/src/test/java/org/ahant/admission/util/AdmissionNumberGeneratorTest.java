@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.awaitility.Awaitility.await;
@@ -23,6 +22,7 @@ public class AdmissionNumberGeneratorTest {
     private AdmissionNumberGenerator source;
     private Set<String> admissionNumberSet;
     private static final int THREAD_SIZE = 1500;
+    private static final int MAX_WAITING_TIME = 10; // in secs
     private static final String SCHOOL_CODE = "CODE";
     private static final String SHORT_SCHOOL_CODE = "COD";
     private static final String SCHOOL_NAME = "ABCD XYZ";
@@ -104,7 +104,7 @@ public class AdmissionNumberGeneratorTest {
             (new Thread(new MultiThreadTest())).start();
         }
 
-        await().atMost(5, SECONDS).until(() -> admissionNumberSet.size() >= THREAD_SIZE);
+        await().atMost(MAX_WAITING_TIME, SECONDS).until(() -> admissionNumberSet.size() >= THREAD_SIZE);
         assertEquals(admissionNumberSet.size(), THREAD_SIZE);
     }
 
