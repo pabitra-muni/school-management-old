@@ -1,5 +1,6 @@
 package org.ahant.admission.model;
 
+import org.ahant.core.annotation.Required;
 import org.ahant.core.model.Fee;
 import org.ahant.core.model.Input;
 import org.ahant.core.model.Student;
@@ -11,8 +12,11 @@ import java.util.Date;
  */
 public class Admission implements Input {
     private String admissionNumber;
+    @Required
     private Date admissionDate;
+    @Required
     private Student student;
+    @Required
     private Fee fee;
     private String remarks;
 

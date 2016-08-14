@@ -1,5 +1,7 @@
 package org.ahant.core.annotation;
 
+import org.ahant.core.validation.FieldValidatorType;
+
 import java.lang.annotation.*;
 
 /**
@@ -7,9 +9,9 @@ import java.lang.annotation.*;
  */
 @Documented
 @Target(ElementType.FIELD)
-@Inherited
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Field {
     String name() default "";
     boolean optional() default false;
+    FieldValidatorType validatorType() default FieldValidatorType.DEFAULT;
 }

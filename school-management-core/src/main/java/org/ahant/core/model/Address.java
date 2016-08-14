@@ -1,14 +1,27 @@
 package org.ahant.core.model;
 
+import org.ahant.core.annotation.Field;
+import org.ahant.core.annotation.Required;
+
+import static org.ahant.core.validation.FieldValidatorType.STRING;
+import static org.ahant.core.validation.FieldValidatorType.ZIP;
+
 /**
  * Created by ahant on 7/16/2016.
  */
+@Required
 public class Address {
+    @Field(validatorType = STRING)
     private String addressLine1;
+    @Field(validatorType = STRING)
     private String addressLine2;
+    @Field(validatorType = STRING)
     private String city;
+    @Field(validatorType = STRING)
     private String state;
+    @Field(validatorType = STRING)
     private String country;
+    @Field(validatorType = ZIP)
     private String zip;
 
     public String getAddressLine1() {

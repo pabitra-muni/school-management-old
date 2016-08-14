@@ -6,20 +6,24 @@ import org.ahant.core.annotation.Required;
 import java.util.Date;
 import java.util.List;
 
+import static org.ahant.core.validation.FieldValidatorType.*;
+
 /**
  * Created by ahant on 7/24/2016.
  */
 @Required
 public class Person {
+    @Field(validatorType = STRING)
     private String fullName;
     private Date birthDate;
     private Gender gender;
-    @Field(name = "contactNumber")
+    @Field(name = "contactNumber", validatorType = PHONE)
     private List<String> contactNumberList;
-    @Field(name = "identificationMark")
+    @Field(name = "identificationMark", validatorType = STRING)
     private List<String> identificationMarkList;
+    @Field(name = "identificationMark", validatorType = ADDRESS)
     private Address address;
-    @Field(optional = true)
+    @Field(optional = true, validatorType = EMAIL)
     private String emailAddress;
 
     public String getFullName() {

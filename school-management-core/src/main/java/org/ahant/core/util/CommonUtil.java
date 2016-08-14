@@ -1,5 +1,6 @@
 package org.ahant.core.util;
 
+import com.google.common.base.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,6 +58,14 @@ public class CommonUtil {
 
     public static boolean isNotToday(final Date date) {
         return !isToday(date);
+    }
+
+    public static boolean isBlank(String input){
+        return Strings.isNullOrEmpty(input);
+    }
+
+    public static boolean isNotBlank(String input){
+        return !Strings.isNullOrEmpty(input);
     }
 
     public static <T extends RuntimeException> T buildException(Class<T> exceptionClass, String msg) {
