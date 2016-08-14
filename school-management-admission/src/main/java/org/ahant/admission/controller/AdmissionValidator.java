@@ -8,7 +8,6 @@ import org.ahant.core.model.Student;
 import org.ahant.core.model.TaskData;
 
 import static org.ahant.admission.constants.AdmissionConstants.NO_ADMISSION_DETAIL_ERROR_MSG;
-import static org.ahant.admission.constants.AdmissionConstants.REQUIRED_INFO_MISSING;
 import static org.ahant.core.util.CommonUtil.buildException;
 
 /**
@@ -52,11 +51,6 @@ public class AdmissionValidator implements DataValidator<Admission> {
         if(student.getContactNumberList().isEmpty() || Strings.isNullOrEmpty(student.getContactNumberList().get(0))){
             throw buildException(ApplicationException.class, "contactNumber");
         }
-
-    }
-
-    private String getExceptionMessage(String propertyName){
-        return String.format(REQUIRED_INFO_MISSING, propertyName);
 
     }
 }

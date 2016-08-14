@@ -1,6 +1,7 @@
-package org.ahant.core.validation;
+package org.ahant.core.validation.util;
 
 import org.ahant.core.exception.ApplicationException;
+import static org.ahant.core.constants.ApplicationConstants.REQUIRED_FIELD_MISSING;
 
 /**
  * Created by ahant on 8/14/2016.
@@ -13,5 +14,10 @@ public class RequiredFieldValidator {
      */
     public static boolean validate(Object type) throws ApplicationException{
         return false;
+    }
+
+    private String getExceptionMessage(String propertyName){
+        return String.format(REQUIRED_FIELD_MISSING, propertyName);
+
     }
 }
