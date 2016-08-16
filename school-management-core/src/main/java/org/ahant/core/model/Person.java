@@ -12,9 +12,9 @@ import static org.ahant.core.validation.FieldValidatorType.*;
 /**
  * Created by ahant on 7/24/2016.
  */
-@Required
 public class Person {
     @FieldInfo(validatorType = STRING)
+    @Required
     private String fullName;
     private Date birthDate;
     private Gender gender;
@@ -26,7 +26,7 @@ public class Person {
     private List<String> identificationMarkList;
     @FieldInfo(name = "identificationMark", validatorType = ADDRESS)
     private Address address;
-    @FieldInfo(optional = true, validatorType = EMAIL)
+    @FieldInfo(name = "email", validatorType = EMAIL)
     private String emailAddress;
 
     public String getFullName() {
