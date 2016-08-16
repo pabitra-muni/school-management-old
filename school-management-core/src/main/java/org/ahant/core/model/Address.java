@@ -1,6 +1,6 @@
 package org.ahant.core.model;
 
-import org.ahant.core.annotation.Field;
+import org.ahant.core.annotation.FieldInfo;
 import org.ahant.core.annotation.Required;
 
 import static org.ahant.core.validation.FieldValidatorType.STRING;
@@ -11,17 +11,17 @@ import static org.ahant.core.validation.FieldValidatorType.ZIP;
  */
 @Required
 public class Address {
-    @Field(validatorType = STRING)
+    @FieldInfo(validatorType = STRING)
     private String addressLine1;
-    @Field(validatorType = STRING)
+    @FieldInfo(validatorType = STRING)
     private String addressLine2;
-    @Field(validatorType = STRING)
+    @FieldInfo(validatorType = STRING)
     private String city;
-    @Field(validatorType = STRING)
+    @FieldInfo(validatorType = STRING)
     private String state;
-    @Field(validatorType = STRING)
+    @FieldInfo(validatorType = STRING)
     private String country;
-    @Field(validatorType = ZIP)
+    @FieldInfo(validatorType = ZIP)
     private String zip;
 
     public String getAddressLine1() {

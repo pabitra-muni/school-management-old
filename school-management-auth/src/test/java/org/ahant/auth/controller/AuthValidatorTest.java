@@ -86,6 +86,14 @@ public class AuthValidatorTest {
     }
 
     @Test
+    public void testValidateUser_PasswordNull_ButNotRequired() {
+        TaskData<User> data = getTaskData();
+        data.setSource(new User(testUsername, null));
+        assertTrue(authValidator.isValidUserInput(data, false));
+        assertNull(data.getException());
+    }
+
+    @Test
     public void testValidateUser_ValidUserDetails() {
         TaskData<User> data = getTaskData();
         data.setSource(new User(testUsername, testPassword));

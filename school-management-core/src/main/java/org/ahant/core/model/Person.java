@@ -1,6 +1,6 @@
 package org.ahant.core.model;
 
-import org.ahant.core.annotation.Field;
+import org.ahant.core.annotation.FieldInfo;
 import org.ahant.core.annotation.Required;
 
 import java.util.Date;
@@ -13,17 +13,17 @@ import static org.ahant.core.validation.FieldValidatorType.*;
  */
 @Required
 public class Person {
-    @Field(validatorType = STRING)
+    @FieldInfo(validatorType = STRING)
     private String fullName;
     private Date birthDate;
     private Gender gender;
-    @Field(name = "contactNumber", validatorType = PHONE)
+    @FieldInfo(name = "contactNumber", validatorType = PHONE, isCollection = true)
     private List<String> contactNumberList;
-    @Field(name = "identificationMark", validatorType = STRING)
+    @FieldInfo(name = "identificationMark", validatorType = STRING, isCollection = true)
     private List<String> identificationMarkList;
-    @Field(name = "identificationMark", validatorType = ADDRESS)
+    @FieldInfo(name = "identificationMark", validatorType = ADDRESS)
     private Address address;
-    @Field(optional = true, validatorType = EMAIL)
+    @FieldInfo(optional = true, validatorType = EMAIL)
     private String emailAddress;
 
     public String getFullName() {

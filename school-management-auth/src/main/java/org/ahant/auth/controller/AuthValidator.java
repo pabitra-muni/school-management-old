@@ -1,6 +1,5 @@
 package org.ahant.auth.controller;
 
-import com.google.common.base.Strings;
 import org.ahant.auth.exception.InvalidCredentialException;
 import org.ahant.auth.model.User;
 import org.ahant.core.controller.DataValidator;
@@ -10,6 +9,7 @@ import org.ahant.core.model.TaskData;
 import static org.ahant.auth.constants.AuthConstants.INVALID_CREDENTIAL;
 import static org.ahant.auth.constants.AuthConstants.NO_USER;
 import static org.ahant.core.util.CommonUtil.buildException;
+import static org.ahant.core.util.CommonUtil.isNotBlank;
 
 /**
  * Created by ahant on 7/27/2016.
@@ -21,14 +21,14 @@ public class AuthValidator implements DataValidator<User> {
         return isValidUserInput(taskData, true);
     }
 
-    static boolean isValidUserInput(TaskData<User> taskData, boolean isPasswordValidationRequired) {
+    protected boolean isValidUserInput(TaskData<User> taskData, boolean isPasswordValidationRequired) {
         boolean returnValue = false;
         User user = taskData.getSource();
         if (user != null) {
-            if (Strings.isNullOrEmpty(user.getUserName()) || (isPasswordValidationRequired ? Strings.isNullOrEmpty(user.getPassword()) : false)) {
-                taskData.setException(buildException(InvalidCredentialException.class, INVALID_CREDENTIAL));
-            } else {
+            if (isNotBlank(user.getUserName()) && (isPasswordValidationRequired ? isNotBlank(user.getPassword()) : true)) {
                 returnValue = true;
+            } else {
+                taskData.setException(buildException(InvalidCredentialException.class, INVALID_CREDENTIAL));
             }
         } else {
             taskData.setException(buildException(ApplicationException.class, NO_USER));
