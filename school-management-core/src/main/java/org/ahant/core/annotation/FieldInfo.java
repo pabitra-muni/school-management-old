@@ -14,5 +14,4 @@ public @interface FieldInfo {
     String name() default "";
     boolean optional() default false;
     FieldValidatorType validatorType() default FieldValidatorType.DEFAULT;
-    boolean isCollection() default false;
 }

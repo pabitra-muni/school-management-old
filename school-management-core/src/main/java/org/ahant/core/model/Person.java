@@ -1,5 +1,6 @@
 package org.ahant.core.model;
 
+import org.ahant.core.annotation.CollectionType;
 import org.ahant.core.annotation.FieldInfo;
 import org.ahant.core.annotation.Required;
 
@@ -17,9 +18,11 @@ public class Person {
     private String fullName;
     private Date birthDate;
     private Gender gender;
-    @FieldInfo(name = "contactNumber", validatorType = PHONE, isCollection = true)
+    @FieldInfo(name = "contactNumber", validatorType = PHONE)
+    @CollectionType
     private List<String> contactNumberList;
-    @FieldInfo(name = "identificationMark", validatorType = STRING, isCollection = true)
+    @FieldInfo(name = "identificationMark", validatorType = STRING)
+    @CollectionType
     private List<String> identificationMarkList;
     @FieldInfo(name = "identificationMark", validatorType = ADDRESS)
     private Address address;

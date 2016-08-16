@@ -12,7 +12,7 @@ class AddressFieldValidator implements FieldValidator<Address> {
     public boolean validate(Address address) {
         boolean returnValue = false;
         if(address != null){
-            returnValue = RequiredFieldValidator.validate(address);
+            returnValue = RequiredFieldValidator.validate(address, FieldValidationType.FAIL_FAST);
         }
         return returnValue;
     }
