@@ -13,7 +13,7 @@ import static org.ahant.core.validation.FieldValidatorType.ZIP;
 public class Address {
     @FieldInfo(validatorType = STRING)
     private String addressLine1;
-    @FieldInfo(validatorType = STRING)
+    @FieldInfo(optional = true, validatorType = STRING)
     private String addressLine2;
     @FieldInfo(validatorType = STRING)
     private String city;

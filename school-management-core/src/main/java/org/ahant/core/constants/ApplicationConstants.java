@@ -8,7 +8,7 @@ public class ApplicationConstants {
     public static final String PHONE_NUMBER_REGEX = "";
     public static final String ZIP_CODE_REGEX = "";
     public static final String EMAIL_REGEX = "";
-    public static final String BIRTH_DATE_FORMAT = "MM/dd/yyyy";
+    public static final String BIRTH_DATE_FORMAT = "dd/MM/yyyy";
 
     private ApplicationConstants() {
     }

@@ -1,5 +1,9 @@
 package org.ahant.core.validation;
 
+import com.google.common.collect.ImmutableSet;
+
+import java.util.Set;
+
 import static org.ahant.core.util.CommonUtil.isNotBlank;
 
 /**
@@ -17,11 +21,11 @@ class StringFieldValidator implements FieldValidator<String> {
     }
 
     @Override
-    public boolean validate(String input) {
-        boolean returnValue = false;
+    public Set<String> validate(String input) {
+        boolean isValid = false;
         if (isNotBlank(input)) {
-            returnValue = isNotBlank(regEx) ? input.matches(regEx) : true;
+            isValid = isNotBlank(regEx) ? input.matches(regEx) : true;
         }
-        return returnValue;
+        return isValid ? null : ImmutableSet.of("Invalid value: "+input);
     }
 }
