@@ -1,6 +1,7 @@
 package org.ahant.core.validation;
 
 import com.google.common.collect.ImmutableList;
+import org.ahant.core.model.Address;
 import org.ahant.core.model.Gender;
 import org.ahant.core.validation.util.RequiredFieldValidator;
 import org.testng.annotations.Test;
@@ -21,6 +22,7 @@ public class RequiredFieldValidatorTest {
         clazz.setFullName("Pabitra Muni");
         clazz.setGender(Gender.MALE);
         clazz.setContactNumberList(ImmutableList.of("8978889915"));
+        clazz.setAddress(new Address());
 
         assertTrue(RequiredFieldValidator.validate(clazz, FieldValidationType.FAIL_FAST).isEmpty());
     }

@@ -2,11 +2,13 @@ package org.ahant.core.validation;
 
 import org.ahant.core.annotation.CollectionType;
 import org.ahant.core.annotation.FieldInfo;
+import org.ahant.core.model.Address;
 import org.ahant.core.model.Gender;
 
 import java.util.Date;
 import java.util.List;
 
+import static org.ahant.core.validation.FieldValidatorType.ADDRESS;
 import static org.ahant.core.validation.FieldValidatorType.PHONE;
 import static org.ahant.core.validation.FieldValidatorType.STRING;
 
@@ -21,6 +23,8 @@ public class DummyClass {
     @FieldInfo(name = "contactNumber", validatorType = PHONE)
     @CollectionType
     private List<String> contactNumberList;
+    @FieldInfo(validatorType = ADDRESS)
+    private Address address;
 
     public String getFullName() {
         return fullName;
@@ -52,5 +56,13 @@ public class DummyClass {
 
     public void setContactNumberList(List<String> contactNumberList) {
         this.contactNumberList = contactNumberList;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(final Address address) {
+        this.address = address;
     }
 }

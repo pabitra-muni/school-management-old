@@ -85,7 +85,7 @@ public class RequiredFieldValidator {
                         while (collectionFieldIterator.hasNext()) {
                             Object collectionValue = collectionFieldIterator.next();
                             Set<String> tempErrors = validator.get().validate(collectionValue);
-                            if (fieldError != null) {
+                            if (tempErrors != null) {
                                 fieldError.addAll(tempErrors);
                             }
                         }
