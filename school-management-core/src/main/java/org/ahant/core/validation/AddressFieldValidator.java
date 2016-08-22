@@ -15,6 +15,6 @@ class AddressFieldValidator implements FieldValidator<Address> {
     @Override
     public Set<String> validate(Address address) {
         checkArgument(address != null, "address can't be null");
-        return RequiredFieldValidator.validate(address, FieldValidationType.CONTINUE);
+        return RequiredFieldValidator.validate(address, FieldValidationType.FAIL_FAST);
     }
 }

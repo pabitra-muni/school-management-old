@@ -7,7 +7,6 @@ import org.ahant.core.model.School;
  */
 public class ApplicationCache {
     private static School currentSchool;
-
     private ApplicationCache() {
     }
 

@@ -1,13 +1,19 @@
 package org.ahant.core.validation.util;
 
 import com.google.common.collect.Sets;
+import org.ahant.core.annotation.CollectionType;
+import org.ahant.core.annotation.FieldInfo;
 import org.ahant.core.annotation.Required;
 import org.ahant.core.validation.FieldValidationType;
+import org.ahant.core.validation.FieldValidatorType;
 
 import java.lang.reflect.Field;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Set;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static org.ahant.core.constants.ApplicationConstants.COLLECTION_MIN_SIZE_ERROR;
 import static org.ahant.core.constants.ApplicationConstants.REQUIRED_FIELD_MISSING;
 
 /**
@@ -19,31 +25,88 @@ public class RequiredFieldValidator {
      * Get all the declared fields of 'type' object and invoke their respective field validators. throw exception if validator returns false.
      * The thrown exception must be of type Application exception with message as required field missing along with field name.
      */
-    public static Set<String> validate(Object type, FieldValidationType validationType){
+    public static Set<String> validate(Object type, FieldValidationType validationType) {
         checkArgument(type != null, "type can't be null");
         return performFieldValidation(type, validationType, type.getClass().getAnnotation(Required.class) != null);
     }
 
     /**
-     * Iterates over all declared fields and performs validation.
+     * Iterates over all declared fields and performs validation using their declared validator or default validator if none has been provided.
      *
      * @param type                      type instance for which validation needs to be performed
      * @param validationType            If <code>FieldValidationType.FAIL_FAST</code>, the process terminates as soon as it encounters a failed scenario else continues validation.
      * @param requiredAnnotationPresent indicates if the given type object has 'Required' annotation at class level. If present, all of it's fields are considered as required
      *                                  unless explicitly mentioned as 'optional'.
+     * @return returns a set of error messages, if any or empty. It never returns <code>null</code>.
      */
     private static Set<String> performFieldValidation(Object type, FieldValidationType validationType, boolean requiredAnnotationPresent) {
         Set<String> errors = Sets.newHashSet();
         Field[] fields = type.getClass().getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
+            FieldInfo info = field.getAnnotation(FieldInfo.class);
+            Object fieldValue = null;
+            try {
+                fieldValue = field.get(type);
+            } catch (IllegalAccessException e) {
+                // ignore exception and either terminate or continue based on validationType.
+                if (FieldValidationType.CONTINUE.equals(validationType)) {
+                    continue;
+                } else {
+                    errors.add(e.getMessage());
+                    return errors;
+                }
+            }
+            String fieldName = field.getName();
+            /*if (requiredAnnotationPresent) {
+                if (!info.optional() && fieldValue == null) {
+                    errors.add(getExceptionMessage(fieldName));
+                }
+            } else if (field.getAnnotation(Required.class) != null && fieldValue == null) {
+                errors.add(getExceptionMessage(fieldName));
+            }*/
+            if (!info.optional() && fieldValue == null) {
+                errors.add(getExceptionMessage(fieldName));
+            }
+            //continue if there are no errors OR validation type is {@code FieldValidationType.CONTINUE}
+            if (FieldValidationType.CONTINUE.equals(validationType) || errors.isEmpty()) {
+                FieldValidatorType validator = info.validatorType();
+                if (validator == null) {
+                    validator = FieldValidatorType.DEFAULT;
+                }
+                Set<String> fieldError = Sets.newHashSet();
+                CollectionType collectionAnnotation = field.getAnnotation(CollectionType.class);
+                if (collectionAnnotation == null) {
+                    fieldError = validator.get().validate(fieldValue);
+                } else {
+                    Collection collectionData = (Collection) fieldValue;
+                    if (collectionData.size() < collectionAnnotation.minSize()) {
+                        errors.add(getCollectionErrorMessage(fieldName, collectionAnnotation.minSize()));
+                    } else {
+                        Iterator collectionFieldIterator = collectionData.iterator();
+                        while (collectionFieldIterator.hasNext()) {
+                            Object collectionValue = collectionFieldIterator.next();
+                            fieldError.addAll(validator.get().validate(collectionValue));
+                        }
+                    }
+                }
+                if (fieldError != null){
+                    errors.addAll(fieldError);
+                }
+            }
+            if (FieldValidationType.FAIL_FAST.equals(validationType) && !errors.isEmpty()) {
+                break;
+            }
         }
 
         return errors;
     }
 
-    private static String getExceptionMessage(String propertyName) {
-        return String.format(REQUIRED_FIELD_MISSING, propertyName);
+    private static String getExceptionMessage(String fieldName) {
+        return String.format(REQUIRED_FIELD_MISSING, fieldName);
+    }
 
+    private static String getCollectionErrorMessage(String fieldName, int minSize) {
+        return String.format(COLLECTION_MIN_SIZE_ERROR, fieldName, minSize);
     }
 }

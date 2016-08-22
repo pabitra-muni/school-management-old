@@ -2,8 +2,8 @@ package org.ahant.core.validation;
 
 import com.google.common.collect.ImmutableSet;
 
-import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Set;
 
 /**
@@ -11,9 +11,9 @@ import java.util.Set;
  */
 public class DateFieldValidator implements FieldValidator<String> {
 
-    private DateFormat formatter;
+    private SimpleDateFormat formatter;
 
-    DateFieldValidator(DateFormat format) {
+    DateFieldValidator(SimpleDateFormat format) {
         this.formatter = format;
     }
 
@@ -29,6 +29,6 @@ public class DateFieldValidator implements FieldValidator<String> {
                 // Ignore the exception and return error;
             }
         }
-        return isValid ? null : ImmutableSet.of("Invalid date value for format:" + formatter.toString());
+        return isValid ? null : ImmutableSet.of(String.format("Invalid date value \'%s\' for format %s", input, formatter.toPattern()));
     }
 }

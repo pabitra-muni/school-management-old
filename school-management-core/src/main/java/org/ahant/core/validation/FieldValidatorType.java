@@ -2,10 +2,7 @@ package org.ahant.core.validation;
 
 import java.text.SimpleDateFormat;
 
-import static org.ahant.core.constants.ApplicationConstants.EMAIL_REGEX;
-import static org.ahant.core.constants.ApplicationConstants.PHONE_NUMBER_REGEX;
-import static org.ahant.core.constants.ApplicationConstants.ZIP_CODE_REGEX;
-import static org.ahant.core.constants.ApplicationConstants.BIRTH_DATE_FORMAT;
+import static org.ahant.core.constants.ApplicationConstants.*;
 
 /**
  * Created by ahant on 8/14/2016.
@@ -13,9 +10,9 @@ import static org.ahant.core.constants.ApplicationConstants.BIRTH_DATE_FORMAT;
 public enum FieldValidatorType {
     DEFAULT(new DefaultFieldValidator()),
     STRING(new StringFieldValidator()),
-    PHONE(new StringFieldValidator(PHONE_NUMBER_REGEX)),
-    ZIP(new StringFieldValidator(ZIP_CODE_REGEX)),
-    EMAIL(new StringFieldValidator(EMAIL_REGEX)),
+    PHONE(new StringFieldValidator(PHONE_NUMBER_REGEX, INVALID_PHONE)),
+    ZIP(new StringFieldValidator(ZIP_CODE_REGEX, INVALID_ZIP, 6)),
+    EMAIL(new StringFieldValidator(EMAIL_REGEX, INVALID_EMAIL, 30)),
     ADDRESS(new AddressFieldValidator()),
     BIRTH_DATE(new DateFieldValidator(new SimpleDateFormat(BIRTH_DATE_FORMAT)));
 
