@@ -15,6 +15,7 @@ import java.util.Set;
 import static com.google.common.base.Preconditions.checkArgument;
 import static org.ahant.core.constants.ApplicationConstants.COLLECTION_MIN_SIZE_ERROR;
 import static org.ahant.core.constants.ApplicationConstants.REQUIRED_FIELD_MISSING;
+import static org.ahant.core.util.CommonUtil.isNotBlank;
 
 /**
  * Created by ahant on 8/14/2016.
@@ -57,7 +58,7 @@ public class RequiredFieldValidator {
                     return errors;
                 }
             }
-            String fieldName = field.getName();
+            String fieldName = (info != null && isNotBlank(info.name())) ? info.name() : field.getName();
             /*if (requiredAnnotationPresent) {
                 if (!info.optional() && fieldValue == null) {
                     errors.add(getExceptionMessage(fieldName));
@@ -65,15 +66,12 @@ public class RequiredFieldValidator {
             } else if (field.getAnnotation(Required.class) != null && fieldValue == null) {
                 errors.add(getExceptionMessage(fieldName));
             }*/
-            if (!info.optional() && fieldValue == null) {
+            if (info != null && !info.optional() && fieldValue == null) {
                 errors.add(getExceptionMessage(fieldName));
             }
             //continue if there are no errors OR validation type is {@code FieldValidationType.CONTINUE}
-            if (FieldValidationType.CONTINUE.equals(validationType) || errors.isEmpty()) {
-                FieldValidatorType validator = info.validatorType();
-                if (validator == null) {
-                    validator = FieldValidatorType.DEFAULT;
-                }
+            if (fieldValue != null && (FieldValidationType.CONTINUE.equals(validationType) || errors.isEmpty())) {
+                FieldValidatorType validator = info != null ? info.validatorType() : FieldValidatorType.DEFAULT;
                 Set<String> fieldError = Sets.newHashSet();
                 CollectionType collectionAnnotation = field.getAnnotation(CollectionType.class);
                 if (collectionAnnotation == null) {
@@ -86,11 +84,14 @@ public class RequiredFieldValidator {
                         Iterator collectionFieldIterator = collectionData.iterator();
                         while (collectionFieldIterator.hasNext()) {
                             Object collectionValue = collectionFieldIterator.next();
-                            fieldError.addAll(validator.get().validate(collectionValue));
+                            Set<String> tempErrors = validator.get().validate(collectionValue);
+                            if (fieldError != null) {
+                                fieldError.addAll(tempErrors);
+                            }
                         }
                     }
                 }
-                if (fieldError != null){
+                if (fieldError != null) {
                     errors.addAll(fieldError);
                 }
             }

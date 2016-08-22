@@ -12,6 +12,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface FieldInfo {
     String name() default "";
-    boolean optional() default false;
+    boolean optional() default true;
     FieldValidatorType validatorType() default FieldValidatorType.DEFAULT;
 }
