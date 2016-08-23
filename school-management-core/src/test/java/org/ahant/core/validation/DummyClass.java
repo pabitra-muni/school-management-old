@@ -8,23 +8,23 @@ import org.ahant.core.model.Gender;
 import java.util.Date;
 import java.util.List;
 
-import static org.ahant.core.validation.FieldValidatorType.ADDRESS;
-import static org.ahant.core.validation.FieldValidatorType.PHONE;
-import static org.ahant.core.validation.FieldValidatorType.STRING;
+import static org.ahant.core.validation.FieldValidatorType.*;
 
 /**
  * Created by ahant on 8/22/2016.
  */
 public class DummyClass {
-    @FieldInfo(validatorType = STRING)
+    @FieldInfo(validatorType = STRING, optional = false)
     private String fullName;
     private Date birthDate;
     private Gender gender;
-    @FieldInfo(name = "contactNumber", validatorType = PHONE)
+    @FieldInfo(name = "contactNumber", validatorType = PHONE, optional = false)
     @CollectionType
     private List<String> contactNumberList;
     @FieldInfo(validatorType = ADDRESS)
     private Address address;
+    @FieldInfo(name = "email", validatorType = EMAIL)
+    private String emailAddress;
 
     public String getFullName() {
         return fullName;
@@ -64,5 +64,13 @@ public class DummyClass {
 
     public void setAddress(final Address address) {
         this.address = address;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 }

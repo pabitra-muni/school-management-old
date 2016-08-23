@@ -11,4 +11,9 @@
             <package name="org.ahant.core.controller.*" />
         </packages>
     </test>
+    <test name="Core: Validation">
+        <packages>
+            <package name="org.ahant.core.validation.*" />
+        </packages>
+    </test>
 </suite>

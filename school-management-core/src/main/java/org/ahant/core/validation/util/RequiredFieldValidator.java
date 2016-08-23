@@ -108,6 +108,6 @@ public class RequiredFieldValidator {
     }
 
     private static String getCollectionErrorMessage(String fieldName, int minSize) {
-        return String.format(COLLECTION_MIN_SIZE_ERROR, fieldName, minSize);
+        return String.format(COLLECTION_MIN_SIZE_ERROR, minSize, fieldName);
     }
 }
