@@ -22,7 +22,6 @@ public class AdmissionValidator implements DataValidator<Admission> {
         final Admission admission = taskData.getSource();
         if (admission != null) {
             try{
-
                 checkStudentDetails(admission);
                 returnValue = true;
             }catch (ApplicationException ex){

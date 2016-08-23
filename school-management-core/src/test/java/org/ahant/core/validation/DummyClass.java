@@ -25,6 +25,8 @@ public class DummyClass {
     private Address address;
     @FieldInfo(name = "email", validatorType = EMAIL)
     private String emailAddress;
+    @FieldInfo(optional = false)
+    private int score;
 
     public String getFullName() {
         return fullName;

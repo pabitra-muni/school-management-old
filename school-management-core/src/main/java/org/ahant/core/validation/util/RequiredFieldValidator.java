@@ -59,13 +59,6 @@ public class RequiredFieldValidator {
                 }
             }
             String fieldName = (info != null && isNotBlank(info.name())) ? info.name() : field.getName();
-            /*if (requiredAnnotationPresent) {
-                if (!info.optional() && fieldValue == null) {
-                    errors.add(getExceptionMessage(fieldName));
-                }
-            } else if (field.getAnnotation(Required.class) != null && fieldValue == null) {
-                errors.add(getExceptionMessage(fieldName));
-            }*/
             if (info != null && !info.optional() && fieldValue == null) {
                 errors.add(getExceptionMessage(fieldName));
             }
