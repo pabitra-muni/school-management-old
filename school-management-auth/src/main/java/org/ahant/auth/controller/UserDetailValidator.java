@@ -9,7 +9,7 @@ import org.ahant.core.model.TaskData;
 public class UserDetailValidator extends AuthValidator {
 
     @Override
-    public boolean validate(TaskData<User> taskData) {
-        return isValidUserInput(taskData, false);
+    public void validate(TaskData<User> taskData) {
+        isValidUserInput(taskData, false);
     }
 }

@@ -1,14 +1,17 @@
 package org.ahant.admission.controller;
 
-import com.google.common.base.Strings;
 import org.ahant.admission.model.Admission;
 import org.ahant.core.controller.DataValidator;
-import org.ahant.core.exception.ApplicationException;
 import org.ahant.core.model.Student;
 import org.ahant.core.model.TaskData;
+import org.ahant.core.validation.FieldValidationType;
+import org.ahant.core.validation.util.RequiredFieldValidator;
 
-import static org.ahant.admission.constants.AdmissionConstants.NO_ADMISSION_DETAIL_ERROR_MSG;
-import static org.ahant.core.util.CommonUtil.buildException;
+import java.util.Date;
+import java.util.Set;
+
+import static org.ahant.admission.constants.AdmissionConstants.*;
+import static org.ahant.core.util.CommonUtil.*;
 
 /**
  * Created by ahant on 8/2/2016.
@@ -16,40 +19,39 @@ import static org.ahant.core.util.CommonUtil.buildException;
 public class AdmissionValidator implements DataValidator<Admission> {
 
     @Override
-    public boolean validate(TaskData<Admission> taskData) {
-        boolean returnValue = false;
-
+    public void validate(TaskData<Admission> taskData) {
         final Admission admission = taskData.getSource();
         if (admission != null) {
-            try{
-                checkStudentDetails(admission);
-                returnValue = true;
-            }catch (ApplicationException ex){
-                taskData.setException(ex);
+            try {
+                Set<String> errors = RequiredFieldValidator.validate(admission, FieldValidationType.FAIL_FAST);
+                if (isSuccessful(errors)) {
+                    // field validation was successful, do business validations.
+                    if (isNotBlank(performBusinessValidation(admission))) {
+                        setException(taskData, errors.iterator().next());
+                    }
+                } else {
+                    // field validation failed, set exception
+                    setException(taskData, errors.iterator().next());
+                }
+
+
+            } catch (RuntimeException ex) {
+                setException(taskData, ex.getMessage());
             }
         } else {
-            taskData.setException(buildException(ApplicationException.class, NO_ADMISSION_DETAIL_ERROR_MSG));
+            setException(taskData, NO_ADMISSION_DETAIL_ERROR_MSG);
         }
-        return returnValue;
     }
 
-    private void checkStudentDetails(final Admission admission) {
+    private String performBusinessValidation(final Admission admission) {
         Student student = admission.getStudent();
-        if(Strings.isNullOrEmpty(student.getFullName())){
-             throw buildException(ApplicationException.class, "fullName");
+        if(student.getFatherName() == null && student.getMotherName()==null && student.getGuardianName()==null){
+            return GUARDIAN_MISSING;
         }
-        if(student.getBirthDate() == null){
-            throw buildException(ApplicationException.class, "birthDate");
+        // admission date should not be a previous date, should be today or a post date.
+        if(isLaterDate(new Date(), admission.getAdmissionDate())){
+            return ADMISSION_DATE_ERROR;
         }
-        if(student.getGender() == null){
-            throw buildException(ApplicationException.class, "gender");
-        }
-        if(student.getStandard() == null || student.getSection() == null){
-            throw buildException(ApplicationException.class, "standard/ section");
-        }
-        if(student.getContactNumberList().isEmpty() || Strings.isNullOrEmpty(student.getContactNumberList().get(0))){
-            throw buildException(ApplicationException.class, "contactNumber");
-        }
-
+        return null;
     }
 }

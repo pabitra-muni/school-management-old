@@ -14,8 +14,8 @@ public class SimpleTaskExecutor<T extends Input> implements TaskExecutor<T> {
     ResultBuilder<T> resultBuilder;
 
     @Override
-    public boolean validate(TaskData<T> taskData) {
-        return validator.validate(taskData);
+    public void validate(TaskData<T> taskData) {
+        validator.validate(taskData);
     }
 
     @Override

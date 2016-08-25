@@ -18,8 +18,8 @@ public class SimpleTaskController<T extends Input> implements TaskController<T> 
     public Result executeTask(TaskData<T> taskData) {
         Result result;
         if (taskData != null) {
-            boolean isValid = executor.validate(taskData);
-            if (isValid && taskData.getException() == null) {
+            executor.validate(taskData);
+            if (taskData.getException() == null) {
                 executor.process(taskData);
             }
             result = executor.buildResult(taskData);

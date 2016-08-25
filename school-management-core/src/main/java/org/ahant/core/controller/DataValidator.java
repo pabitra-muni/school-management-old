@@ -8,5 +8,5 @@ import org.ahant.core.model.TaskData;
  */
 @FunctionalInterface
 public interface DataValidator<T extends Input> {
-    boolean validate(TaskData<T> taskData);
+    void validate(TaskData<T> taskData);
 }

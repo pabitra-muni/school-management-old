@@ -25,8 +25,7 @@ public class AdmissionValidatorTest {
     @Test
     public void testValidate_nullInput(){
         taskData.setSource(null);
-        boolean result = validator.validate(taskData);
-        assertFalse(result);
+        validator.validate(taskData);
         assertNull(taskData.getTarget());
         assertNotNull(taskData.getException());
         assertTrue(taskData.getException() instanceof ApplicationException);

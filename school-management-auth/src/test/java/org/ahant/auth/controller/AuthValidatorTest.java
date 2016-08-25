@@ -29,7 +29,7 @@ public class AuthValidatorTest {
     public void testValidateUser_UserNull() {
         TaskData<User> data = getTaskData();
         data.setSource(null);
-        assertFalse(authValidator.validate(data));
+        authValidator.validate(data);
         assertNotNull(data.getException());
         assertTrue(data.getException() instanceof ApplicationException);
         String errorMsg = data.getException().getMessage();
@@ -41,7 +41,7 @@ public class AuthValidatorTest {
     public void testValidateUser_UsernameNull() {
         TaskData<User> data = getTaskData();
         data.setSource(new User(null, testPassword));
-        assertFalse(authValidator.validate(data));
+        authValidator.validate(data);
         assertNotNull(data.getException());
         assertTrue(data.getException() instanceof InvalidCredentialException);
         String errorMsg = data.getException().getMessage();
@@ -53,7 +53,7 @@ public class AuthValidatorTest {
     public void testValidateUser_EmptyUserName() {
         TaskData<User> data = getTaskData();
         data.setSource(new User("", testPassword));
-        assertFalse(authValidator.validate(data));
+        authValidator.validate(data);
         assertNotNull(data.getException());
         assertTrue(data.getException() instanceof InvalidCredentialException);
         String errorMsg = data.getException().getMessage();
@@ -65,7 +65,7 @@ public class AuthValidatorTest {
     public void testValidateUser_EmptyPassword() {
         TaskData<User> data = getTaskData();
         data.setSource(new User(testUsername, ""));
-        assertFalse(authValidator.validate(data));
+        authValidator.validate(data);
         assertNotNull(data.getException());
         assertTrue(data.getException() instanceof InvalidCredentialException);
         String errorMsg = data.getException().getMessage();
@@ -77,7 +77,7 @@ public class AuthValidatorTest {
     public void testValidateUser_PasswordNull() {
         TaskData<User> data = getTaskData();
         data.setSource(new User(testUsername, null));
-        assertFalse(authValidator.validate(data));
+        authValidator.validate(data);
         assertNotNull(data.getException());
         assertTrue(data.getException() instanceof InvalidCredentialException);
         String errorMsg = data.getException().getMessage();
@@ -89,7 +89,7 @@ public class AuthValidatorTest {
     public void testValidateUser_PasswordNull_ButNotRequired() {
         TaskData<User> data = getTaskData();
         data.setSource(new User(testUsername, null));
-        assertTrue(authValidator.isValidUserInput(data, false));
+        authValidator.isValidUserInput(data, false);
         assertNull(data.getException());
     }
 
@@ -97,7 +97,7 @@ public class AuthValidatorTest {
     public void testValidateUser_ValidUserDetails() {
         TaskData<User> data = getTaskData();
         data.setSource(new User(testUsername, testPassword));
-        assertTrue(authValidator.validate(data));
+        authValidator.validate(data);
         assertNull(data.getException());
     }
 

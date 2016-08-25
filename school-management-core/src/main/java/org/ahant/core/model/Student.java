@@ -1,37 +1,41 @@
 package org.ahant.core.model;
 
+import org.ahant.core.annotation.FieldInfo;
+
 /**
  * Created by ahant on 7/16/2016.
  */
 public class Student extends Person implements Result {
-    private Person father;
-    private Person mother;
-    private Person guardian;
+    private String fatherName;
+    private String motherName;
+    private String guardianName;
+    @FieldInfo(optional = false)
     private String standard;
+    @FieldInfo(optional = false)
     private String section;
 
-    public Person getFather() {
-        return father;
+    public String getFatherName() {
+        return fatherName;
     }
 
-    public void setFather(Person father) {
-        this.father = father;
+    public void setFatherName(String fatherName) {
+        this.fatherName = fatherName;
     }
 
-    public Person getMother() {
-        return mother;
+    public String getMotherName() {
+        return motherName;
     }
 
-    public void setMother(Person mother) {
-        this.mother = mother;
+    public void setMotherName(String motherName) {
+        this.motherName = motherName;
     }
 
-    public Person getGuardian() {
-        return guardian;
+    public String getGuardianName() {
+        return guardianName;
     }
 
-    public void setGuardian(Person guardian) {
-        this.guardian = guardian;
+    public void setGuardianName(String guardianName) {
+        this.guardianName = guardianName;
     }
 
     public String getStandard() {

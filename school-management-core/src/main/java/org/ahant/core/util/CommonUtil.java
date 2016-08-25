@@ -1,12 +1,16 @@
 package org.ahant.core.util;
 
 import com.google.common.base.Strings;
+import org.ahant.core.exception.ApplicationException;
+import org.ahant.core.exception.ResultException;
+import org.ahant.core.model.TaskData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -14,6 +18,7 @@ import java.util.Date;
  */
 public class CommonUtil {
     private static Logger logger;
+    public static final long _24HOUR = 24 * 60 * 60 * 1000;
 
     private CommonUtil() {
         throw new IllegalAccessError("Utility class");
@@ -39,13 +44,43 @@ public class CommonUtil {
         return temp.toString();
     }
 
+    /**
+     * changes the time values of given date to zero.
+     *
+     * @param date
+     * @return
+     */
+    public static Date getZeroTimeDate(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        return calendar.getTime();
+    }
+
+    /**
+     * checks if date2 is later than date1 ignoring the time stamp.
+     *
+     * @param date1
+     * @param date2
+     * @return
+     */
+    public static boolean isLaterDate(final Date date1, final Date date2) {
+        return getZeroTimeDate(date2).getTime() - getZeroTimeDate(date1).getTime() > 0;
+    }
+
+    /**
+     * checks if date1 and date2 represent the same day ignoring the time stamp.
+     *
+     * @param date1
+     * @param date2
+     * @return
+     */
     public static boolean isSameDate(final Date date1, final Date date2) {
-        boolean isSame = false;
-        DateFormat dateFormatter = DateFormat.getDateInstance(DateFormat.SHORT);
-        if (dateFormatter.format(date1).equals(dateFormatter.format(date2))) {
-            isSame = true;
-        }
-        return isSame;
+        return getZeroTimeDate(date2).getTime() - getZeroTimeDate(date1).getTime() == 0;
     }
 
     public static boolean isNotSameDate(final Date date1, final Date date2) {
@@ -60,11 +95,11 @@ public class CommonUtil {
         return !isToday(date);
     }
 
-    public static boolean isBlank(String input){
+    public static boolean isBlank(String input) {
         return Strings.isNullOrEmpty(input);
     }
 
-    public static boolean isNotBlank(String input){
+    public static boolean isNotBlank(String input) {
         return !Strings.isNullOrEmpty(input);
     }
 
@@ -104,4 +139,21 @@ public class CommonUtil {
     public enum LogSeverity {
         DEBUG, INFO, WARN, ERROR;
     }
+
+    public static boolean isSuccessful(Collection errors) {
+        return errors == null || errors.isEmpty();
+    }
+
+    public static boolean isNotSuccessful(Collection errors) {
+        return !isSuccessful(errors);
+    }
+
+    public static void setException(TaskData taskData, String errorMsg) {
+        setException(taskData, buildException(ApplicationException.class, errorMsg));
+    }
+
+    public static void setException(TaskData taskData, ResultException ex) {
+        taskData.setException(ex);
+    }
+
 }

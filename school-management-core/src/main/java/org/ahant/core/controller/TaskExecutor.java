@@ -9,7 +9,7 @@ import org.ahant.core.model.TaskData;
  */
 public interface TaskExecutor<T extends Input> {
 
-    boolean validate(TaskData<T> taskData);
+    void validate(TaskData<T> taskData);
     void process(TaskData<T> taskData);
     Result buildResult(TaskData<T> taskData);
 

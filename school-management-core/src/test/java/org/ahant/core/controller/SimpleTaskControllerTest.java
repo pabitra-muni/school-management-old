@@ -38,24 +38,8 @@ public class SimpleTaskControllerTest {
     }
 
     @Test
-    public void testExecuteTask_ValidateReturnsFalse() {
-        when(taskExecutor.validate(any(TaskData.class))).thenReturn(false);
-        when(taskExecutor.buildResult(any(TaskData.class))).thenReturn(getExceptionResult());
-        Result result = taskController.executeTask(getTaskData());
-        assertNotNull(result);
-        assertTrue(result instanceof ApplicationException);
-        verify(taskExecutor, atMost(1)).validate(any(TaskData.class));
-        verify(taskExecutor, atMost(1)).buildResult(any(TaskData.class));
-        verify(taskExecutor, never()).process(any(TaskData.class));
-
-        InOrder inOrder = inOrder(taskExecutor);
-        inOrder.verify(taskExecutor).validate(any(TaskData.class));
-        inOrder.verify(taskExecutor).buildResult(any(TaskData.class));
-    }
-
-    @Test
-    public void testExecuteTask_ValidateReturnsTrueButException() {
-        when(taskExecutor.validate(any(TaskData.class))).thenReturn(true);
+    public void testExecuteTask_ValidateGivesException() {
+        doNothing().when(taskExecutor).validate(any(TaskData.class));
         when(taskExecutor.buildResult(any(TaskData.class))).thenReturn(getExceptionResult());
         Result result = taskController.executeTask(getTaskDataWithException());
         assertNotNull(result);
@@ -70,8 +54,8 @@ public class SimpleTaskControllerTest {
     }
 
     @Test
-    public void testExecuteTask_ValidateReturnsTrue() {
-        when(taskExecutor.validate(any(TaskData.class))).thenReturn(true);
+    public void testExecuteTask_ValidateIsSuccessful() {
+        doNothing().when(taskExecutor).validate(any(TaskData.class));
         when(taskExecutor.buildResult(any(TaskData.class))).thenReturn(getResult());
         doNothing().when(taskExecutor).process(any(TaskData.class));
         Result result = taskController.executeTask(getTaskData());

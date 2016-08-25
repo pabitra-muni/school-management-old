@@ -7,6 +7,7 @@ import java.util.Date;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertFalse;
 
 /**
  * Created by ahant on 7/24/2016.
@@ -26,21 +27,34 @@ public class CommonUtilTest {
     public void testIsSameDate() {
         Date today = getToday();
         assertTrue(CommonUtil.isSameDate(today, today));
+        assertFalse(CommonUtil.isSameDate(today, getYesterDay()));
     }
 
     @Test
     public void testIsNotSameDate() {
-        assertTrue(CommonUtil.isNotSameDate(getToday(), getYesterDay()));
+        Date today = getToday();
+        assertTrue(CommonUtil.isNotSameDate(today, getYesterDay()));
+        assertFalse(CommonUtil.isNotSameDate(today, today));
     }
 
     @Test
     public void testIsToday() {
         assertTrue(CommonUtil.isToday(getToday()));
+        assertFalse(CommonUtil.isToday(getYesterDay()));
     }
 
     @Test
     public void testIsNotToday() {
         assertTrue(CommonUtil.isNotToday(getYesterDay()));
+        assertFalse(CommonUtil.isNotToday(getToday()));
+    }
+
+    @Test
+    public void testIsLaterDate() {
+        Date today = getToday();
+        Date yesterday = getYesterDay();
+        assertTrue(CommonUtil.isLaterDate(yesterday, today));
+        assertFalse(CommonUtil.isLaterDate(getToday(), yesterday));
     }
 
     private Date getYesterDay() {
