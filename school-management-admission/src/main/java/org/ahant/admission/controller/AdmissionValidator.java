@@ -45,12 +45,16 @@ public class AdmissionValidator implements DataValidator<Admission> {
 
     private String performBusinessValidation(final Admission admission) {
         Student student = admission.getStudent();
-        if(student.getFatherName() == null && student.getMotherName()==null && student.getGuardianName()==null){
+        if (student.getFatherName() == null && student.getMotherName() == null && student.getGuardianName() == null) {
             return GUARDIAN_MISSING;
         }
         // admission date should not be a previous date, should be today or a post date.
-        if(isLaterDate(new Date(), admission.getAdmissionDate())){
+        if (isLaterDate(new Date(), admission.getAdmissionDate())) {
             return ADMISSION_DATE_ERROR;
+        }
+
+        if(admission.getStudent().getBirthDate() == null){
+            return BIRTH_DATE_ERROR;
         }
         return null;
     }

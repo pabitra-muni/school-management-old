@@ -12,17 +12,18 @@ import static org.ahant.core.validation.FieldValidatorType.*;
  * Created by ahant on 7/24/2016.
  */
 public class Person {
-    @FieldInfo(validatorType = STRING)
+    @FieldInfo(validatorType = STRING, optional = false)
     private String fullName;
     private Date birthDate;
+    @FieldInfo(optional = false)
     private Gender gender;
-    @FieldInfo(name = "contactNumber", validatorType = PHONE)
+    @FieldInfo(name = "contactNumber", validatorType = PHONE, optional = false)
     @CollectionType
     private List<String> contactNumberList;
     @FieldInfo(name = "identificationMark", validatorType = STRING)
     @CollectionType
     private List<String> identificationMarkList;
-    @FieldInfo(validatorType = ADDRESS)
+    @FieldInfo(validatorType = CUSTOM, optional = false)
     private Address address;
     @FieldInfo(name = "email", validatorType = EMAIL)
     private String emailAddress;

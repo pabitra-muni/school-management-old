@@ -11,8 +11,8 @@ public enum FieldValidatorType {
     PHONE(new StringFieldValidator(PHONE_NUMBER_REGEX, INVALID_PHONE)),
     ZIP(new StringFieldValidator(ZIP_CODE_REGEX, INVALID_ZIP)),
     EMAIL(new StringFieldValidator(EMAIL_REGEX, INVALID_EMAIL, 30, 10)),
-    ADDRESS(new AddressFieldValidator()),
-    DATE(new StringFieldValidator(DATE_REGEX, INVALID_DATE));
+    DATE(new StringFieldValidator(DATE_REGEX, INVALID_DATE)),
+    CUSTOM(new CustomTypeFieldValidator());
 
     private FieldValidator validator;
 

@@ -21,7 +21,7 @@ public class DummyClass {
     @FieldInfo(name = "contactNumber", validatorType = PHONE, optional = false)
     @CollectionType
     private List<String> contactNumberList;
-    @FieldInfo(validatorType = ADDRESS)
+    @FieldInfo(validatorType = CUSTOM)
     private Address address;
     @FieldInfo(name = "email", validatorType = EMAIL)
     private String emailAddress;

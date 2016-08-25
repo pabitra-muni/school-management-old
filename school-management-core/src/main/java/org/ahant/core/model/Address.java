@@ -11,17 +11,17 @@ import static org.ahant.core.validation.FieldValidatorType.ZIP;
  */
 @Required
 public class Address {
-    @FieldInfo(validatorType = STRING)
+    @FieldInfo(validatorType = STRING, optional = false)
     private String addressLine1;
     @FieldInfo(optional = true, validatorType = STRING)
     private String addressLine2;
-    @FieldInfo(validatorType = STRING)
+    @FieldInfo(validatorType = STRING, optional = false)
     private String city;
-    @FieldInfo(validatorType = STRING)
+    @FieldInfo(validatorType = STRING, optional = false)
     private String state;
-    @FieldInfo(validatorType = STRING)
-    private String country;
-    @FieldInfo(validatorType = ZIP)
+    @FieldInfo(validatorType = STRING, optional = false)
+    private String country = "India";
+    @FieldInfo(validatorType = ZIP, optional = false)
     private String zip;
 
     public String getAddressLine1() {

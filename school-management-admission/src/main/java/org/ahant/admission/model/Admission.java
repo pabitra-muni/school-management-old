@@ -7,6 +7,8 @@ import org.ahant.core.model.Student;
 
 import java.util.Date;
 
+import static org.ahant.core.validation.FieldValidatorType.CUSTOM;
+
 /**
  * Created by ahant on 7/16/2016.
  */
@@ -14,9 +16,9 @@ public class Admission implements Input {
     private String admissionNumber;
     @FieldInfo(optional = false)
     private Date admissionDate;
-    @FieldInfo(optional = false)
+    @FieldInfo(optional = false, validatorType = CUSTOM)
     private Student student;
-    @FieldInfo(optional = false)
+    @FieldInfo(optional = false, validatorType = CUSTOM)
     private Fee fee;
     private String remarks;
 
@@ -33,7 +35,7 @@ public class Admission implements Input {
     }
 
     public void setAdmissionDate(final Date admissionDate) {
-        this.admissionDate = new Date(admissionDate.getTime());
+        this.admissionDate = admissionDate;
     }
 
     public Student getStudent() {

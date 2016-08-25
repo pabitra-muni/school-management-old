@@ -27,7 +27,7 @@ public class RequiredFieldValidatorTest {
         clazz.setFullName("Pabitra Muni");
         clazz.setGender(Gender.MALE);
         clazz.setContactNumberList(ImmutableList.of("8978889915"));
-        clazz.setAddress(new Address());
+        clazz.setAddress(getAddress());
         clazz.setEmailAddress("mailtopabi@gmail.com");
         assertTrue(RequiredFieldValidator.validate(clazz, FieldValidationType.FAIL_FAST).isEmpty());
     }
@@ -64,7 +64,7 @@ public class RequiredFieldValidatorTest {
         DummyClass clazz = new DummyClass();
         clazz.setBirthDate(new Date());
         clazz.setGender(Gender.MALE);
-        clazz.setAddress(new Address());
+        clazz.setAddress(getAddress());
         Set<String> result = RequiredFieldValidator.validate(clazz, FieldValidationType.CONTINUE);
         assertFalse(result.isEmpty());
         assertEquals(result.size(), 2);
@@ -75,10 +75,19 @@ public class RequiredFieldValidatorTest {
         DummyClass clazz = new DummyClass();
         clazz.setBirthDate(new Date());
         clazz.setGender(Gender.MALE);
-        clazz.setAddress(new Address());
+        clazz.setAddress(getAddress());
         Set<String> result = RequiredFieldValidator.validate(clazz, FieldValidationType.FAIL_FAST);
         assertFalse(result.isEmpty());
         assertEquals(result.size(), 1);
         assertEquals(result.iterator().next(), String.format(REQUIRED_FIELD_MISSING, "fullName"));
+    }
+
+    private Address getAddress() {
+        Address address = new Address();
+        address.setAddressLine1("India");
+        address.setCity("Hyderabad");
+        address.setState("Telangana");
+        address.setZip("500049");
+        return address;
     }
 }
