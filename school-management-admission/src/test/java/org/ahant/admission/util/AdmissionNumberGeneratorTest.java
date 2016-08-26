@@ -22,7 +22,7 @@ public class AdmissionNumberGeneratorTest {
     private AdmissionNumberGenerator source;
     private Set<String> admissionNumberSet;
     private static final int THREAD_SIZE = 1500;
-    private static final int MAX_WAITING_TIME = 10; // in secs
+    private static final int MAX_WAITING_TIME = 30; // in secs
     private static final String SCHOOL_CODE = "CODE";
     private static final String SHORT_SCHOOL_CODE = "COD";
     private static final String SCHOOL_NAME = "ABCD XYZ";
