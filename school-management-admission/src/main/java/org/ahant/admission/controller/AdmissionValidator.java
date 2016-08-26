@@ -26,8 +26,9 @@ public class AdmissionValidator implements DataValidator<Admission> {
                 Set<String> errors = RequiredFieldValidator.validate(admission, FieldValidationType.FAIL_FAST);
                 if (isSuccessful(errors)) {
                     // field validation was successful, do business validations.
-                    if (isNotBlank(performBusinessValidation(admission))) {
-                        setException(taskData, errors.iterator().next());
+                    String errorMsg = performBusinessValidation(admission);
+                    if (isNotBlank(errorMsg)) {
+                        setException(taskData, errorMsg);
                     }
                 } else {
                     // field validation failed, set exception
@@ -48,7 +49,7 @@ public class AdmissionValidator implements DataValidator<Admission> {
         if (student.getFatherName() == null && student.getMotherName() == null && student.getGuardianName() == null) {
             return GUARDIAN_MISSING;
         }
-        // admission date should not be a previous date, should be today or a post date.
+        // admission date should not be a future date, should be today or a past date.
         if (isLaterDate(new Date(), admission.getAdmissionDate())) {
             return ADMISSION_DATE_ERROR;
         }

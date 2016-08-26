@@ -9,16 +9,16 @@ import java.util.Date;
  */
 public class Fee {
     @FieldInfo(optional = false)
-    private double amount;
+    private Double amount;
     @FieldInfo(optional = false)
     private Date paymentDate;
     private String feeDetail;
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -27,7 +27,7 @@ public class Fee {
     }
 
     public void setPaymentDate(final Date paymentDate) {
-        this.paymentDate = new Date(paymentDate.getTime());
+        this.paymentDate = paymentDate;
     }
 
     public String getFeeDetail() {

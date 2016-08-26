@@ -27,37 +27,37 @@ public class CommonUtilTest {
     public void testIsSameDate() {
         Date today = getToday();
         assertTrue(CommonUtil.isSameDate(today, today));
-        assertFalse(CommonUtil.isSameDate(today, getYesterDay()));
+        assertFalse(CommonUtil.isSameDate(today, getYesterday()));
     }
 
     @Test
     public void testIsNotSameDate() {
         Date today = getToday();
-        assertTrue(CommonUtil.isNotSameDate(today, getYesterDay()));
+        assertTrue(CommonUtil.isNotSameDate(today, getYesterday()));
         assertFalse(CommonUtil.isNotSameDate(today, today));
     }
 
     @Test
     public void testIsToday() {
         assertTrue(CommonUtil.isToday(getToday()));
-        assertFalse(CommonUtil.isToday(getYesterDay()));
+        assertFalse(CommonUtil.isToday(getYesterday()));
     }
 
     @Test
     public void testIsNotToday() {
-        assertTrue(CommonUtil.isNotToday(getYesterDay()));
+        assertTrue(CommonUtil.isNotToday(getYesterday()));
         assertFalse(CommonUtil.isNotToday(getToday()));
     }
 
     @Test
     public void testIsLaterDate() {
         Date today = getToday();
-        Date yesterday = getYesterDay();
+        Date yesterday = getYesterday();
         assertTrue(CommonUtil.isLaterDate(yesterday, today));
-        assertFalse(CommonUtil.isLaterDate(getToday(), yesterday));
+        assertFalse(CommonUtil.isLaterDate(today, yesterday));
     }
 
-    private Date getYesterDay() {
+    private Date getYesterday() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, -1);
         return calendar.getTime();
