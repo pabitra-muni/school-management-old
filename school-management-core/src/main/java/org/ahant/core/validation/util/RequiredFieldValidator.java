@@ -9,7 +9,6 @@ import org.ahant.core.validation.FieldValidatorType;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Set;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -74,9 +73,7 @@ public class RequiredFieldValidator {
                     if (collectionData.size() < collectionAnnotation.minSize()) {
                         errors.add(getCollectionErrorMessage(fieldName, collectionAnnotation.minSize()));
                     } else {
-                        Iterator collectionFieldIterator = collectionData.iterator();
-                        while (collectionFieldIterator.hasNext()) {
-                            Object collectionValue = collectionFieldIterator.next();
+                        for (Object collectionValue : collectionData) {
                             Set<String> tempErrors = validator.get().validate(collectionValue);
                             if (tempErrors != null) {
                                 fieldError.addAll(tempErrors);

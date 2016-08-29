@@ -100,7 +100,7 @@ public class CommonUtil {
     }
 
     public static boolean isNotBlank(String input) {
-        return !Strings.isNullOrEmpty(input);
+        return !isBlank(input);
     }
 
     public static <T extends RuntimeException> T buildException(Class<T> exceptionClass, String msg) {

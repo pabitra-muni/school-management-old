@@ -20,10 +20,10 @@ public class AuthProcessor implements DataProcessor<User> {
     @Override
     public void process(TaskData<User> taskData) {
         final User user = taskData.getSource();
-        if (!user.getPassword().equals(Encryptor.decode(authDao.getPassword(user.getUserName())))) {
-            taskData.setException(buildException(InvalidCredentialException.class, INVALID_CREDENTIAL));
-        } else {
+        if (user.getPassword().equals(Encryptor.decode(authDao.getPassword(user.getUserName())))) {
             taskData.setTarget(new EmptyResult());
+        } else {
+            taskData.setException(buildException(InvalidCredentialException.class, INVALID_CREDENTIAL));
         }
     }
 
