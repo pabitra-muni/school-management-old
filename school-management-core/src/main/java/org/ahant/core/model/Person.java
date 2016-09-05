@@ -1,12 +1,15 @@
 package org.ahant.core.model;
 
-import org.ahant.core.annotation.CollectionType;
-import org.ahant.core.annotation.FieldInfo;
+import com.github.ahant.validator.annotation.CollectionType;
+import com.github.ahant.validator.annotation.FieldInfo;
 
 import java.util.Date;
 import java.util.List;
 
-import static org.ahant.core.validation.FieldValidatorType.*;
+import static com.github.ahant.validator.validation.FieldValidatorType.CUSTOM;
+import static com.github.ahant.validator.validation.FieldValidatorType.EMAIL;
+import static com.github.ahant.validator.validation.FieldValidatorType.PHONE;
+import static com.github.ahant.validator.validation.FieldValidatorType.STRING;
 
 /**
  * Created by ahant on 7/24/2016.

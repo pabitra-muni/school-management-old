@@ -1,13 +1,13 @@
 package org.ahant.admission.model;
 
-import org.ahant.core.annotation.FieldInfo;
+import com.github.ahant.validator.annotation.FieldInfo;
 import org.ahant.core.model.Fee;
 import org.ahant.core.model.Input;
 import org.ahant.core.model.Student;
 
 import java.util.Date;
 
-import static org.ahant.core.validation.FieldValidatorType.CUSTOM;
+import static com.github.ahant.validator.validation.FieldValidatorType.CUSTOM;
 
 /**
  * Created by ahant on 7/16/2016.

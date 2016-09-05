@@ -1,15 +1,14 @@
 package org.ahant.core.model;
 
-import org.ahant.core.annotation.FieldInfo;
-import org.ahant.core.annotation.Required;
+import com.github.ahant.validator.annotation.FieldInfo;
 
-import static org.ahant.core.validation.FieldValidatorType.STRING;
-import static org.ahant.core.validation.FieldValidatorType.ZIP;
+import static com.github.ahant.validator.validation.FieldValidatorType.STRING;
+import static com.github.ahant.validator.validation.FieldValidatorType.ZIP;
 
 /**
  * Created by ahant on 7/16/2016.
  */
-@Required
+
 public class Address {
     @FieldInfo(validatorType = STRING, optional = false)
     private String addressLine1;

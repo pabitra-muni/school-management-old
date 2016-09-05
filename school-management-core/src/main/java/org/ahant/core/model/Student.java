@@ -1,6 +1,6 @@
 package org.ahant.core.model;
 
-import org.ahant.core.annotation.FieldInfo;
+import com.github.ahant.validator.annotation.FieldInfo;
 
 /**
  * Created by ahant on 7/16/2016.

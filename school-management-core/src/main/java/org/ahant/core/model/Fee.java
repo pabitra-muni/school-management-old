@@ -1,6 +1,6 @@
 package org.ahant.core.model;
 
-import org.ahant.core.annotation.FieldInfo;
+import com.github.ahant.validator.annotation.FieldInfo;
 
 import java.util.Date;
 

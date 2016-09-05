@@ -30,7 +30,6 @@ subprojects {
         ignoreFailures = false
         reports.junitXml.enabled = false
         reports.html.enabled = true
-        //maxParallelForks = 5
     }
 }
 
